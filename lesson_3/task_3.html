@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task 3</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    Задача 3. Випадковим чином генерується число від 1 до 5. Спробуйте вгадати число за 2 спроби.
+
+  </h1>
+
+  <script>
+
+  let minRandomNum = 1;
+  let maxRandomNum = 5;
+  let resRandomNum = minRandomNum + Math.floor(Math.random() * (maxRandomNum - minRandomNum+1));
+
+  let numOne = parseInt(prompt(`Вкажіть перше число від 1 до 5`));
+  let numTwo = parseInt(prompt(`Вкажіть друге число від 1 до 5. Перше число ви вказали ${numOne}`));
+
+  if(numOne === resRandomNum || numTwo === resRandomNum) {
+    alert (`Ви вгадали! Це було число ${resRandomNum}`)
+  } else alert (`Ви не вгадали число. Сховане число було ${resRandomNum} Спробуйте ще!`)
+    
+
+  </script>
+</body>
+
+</html>
