@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task 4</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    Задача 4. З клавіатури вводиться вік людини. Вивести на екран ким він є (дитиною у садочку, школярем, студентом, працівником, пенсіонером).
+  </h1>
+
+  <script>
+
+    let userAge = parseInt(prompt(`Вкажіть скільки вам років`));
+
+    if (userAge >= 0 && userAge <= 2) {
+      alert(`Ви ще маленький та не ходите до садочка`)
+
+    } else if (userAge >= 3 && userAge <= 7) {
+      alert(`Ви ходите до садочка`)
+
+    } else if (userAge >= 8 && userAge <= 16) {
+      alert(`Ви школяр`) 
+
+    } else if (userAge >= 17 && userAge <= 22) {
+      alert(`Ви студент`) 
+
+    } else if (userAge >= 23 && userAge <= 65) {
+      alert(`Ви працівник`) 
+
+    } else alert(`Ви пенсіонер`) 
+    
+  </script>
+</body>
+
+</html>
