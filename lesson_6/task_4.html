@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task 5</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    5. Інвестор вклав S тис. грн на 20 років під 20% річних. Визначити за допомогою циклів суму, яку він одержить (без оподаткування).
+  </h1>
+
+  <script>
+
+    const deposit = parseFloat(prompt('Вкажіть суму вкладу'))
+    const percentYear = 0.2;
+    let sum = deposit;
+
+    for (let i = 0; i < 20; i++) {
+      sum = sum * percentYear + sum
+    }
+
+    document.write(`Сума без оподаткування складає ${sum.toFixed(2)}<br>`)
+
+
+  </script>
+</body>
+
+</html>

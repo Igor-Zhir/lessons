@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task 7</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    Комп’ютер загадує два випадкових числа від 1 до 10. Вгадати обидва числа шляхом введеня можливих варіантів. В кінці
+    вивести кількість спроб користувача.
+  </h1>
+
+  <script>
+    const minNum = 1
+    const maxNum = 10
+    let attemptUser = 0
+    let userAnswerTwo
+    let userAnswerOne
+
+    const randomOne = minNum + Math.floor(Math.random() * maxNum - minNum + minNum)
+    const randomTwo = minNum + Math.floor(Math.random() * maxNum - minNum + minNum)
+
+    do {
+      userAnswerOne = parseInt(prompt(`Вкажіть перше число. Підказка, це число ${randomOne}`))
+      userAnswerTwo = parseInt(prompt(`Вкажіть друге число. Підказка, це число ${randomTwo}`))
+      if (userAnswerOne !== randomOne && userAnswerTwo !== randomTwo) {
+        alert('Не вгадали')
+      }
+      if (userAnswerOne === randomOne) {
+        alert(`Ви вгадали перше число. Це ${randomOne}`)
+      }
+      if (userAnswerTwo === randomTwo) {
+        alert(`Ви вгадали друге число. Це ${randomTwo}`)
+      }
+      attemptUser++
+    } while (!(userAnswerOne === randomOne && userAnswerTwo === randomTwo));
+
+    alert(`Ви вгадали з ${attemptUser} спроб`)
+  </script>
+</body>
+
+</html>

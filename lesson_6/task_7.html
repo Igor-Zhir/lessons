@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task 7</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    Щоденно спортзал відвідує певна кількість людей. Користувач вводить такі дані: скільки людей відвідало спортзал за
+    день та вік кожного відвідувача. Потрібно вивести вік найстаршого та наймолодшого відвідувачів, а також середній вік
+    всіх відвідувачів спортзалу за день.
+  </h1>
+
+  <script>
+    const visitors = parseInt(prompt('Кількість відвідувачів за день'))
+    let minAge = 1000
+    let maxAge = 0
+    let averegeAge = 0
+
+    for (let i = 1; i <= visitors; i++) {
+
+      const age = parseInt(prompt(`Вік відвідувача ${i}`))
+      averegeAge += (age / visitors)
+
+      if (age < minAge) {
+        minAge = age
+      }
+      
+      if (age > maxAge) {
+        maxAge = age
+      }
+    }
+    document.write(`Самий молоший ${minAge}<br>`)
+    document.write(`Самий старший ${maxAge}<br>`)
+    document.write(`Середній вік ${averegeAge.toFixed(0)}`)
+  </script>
+</body>
+
+</html>
