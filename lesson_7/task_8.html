@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task 8</title>
+</head>
+
+<body>
+
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    Задача 8. Створити функцію, яка виводить банер (у функцію передаються: зображення, заголовок та посилання, куди
+    переходимо при кліку на зображення (тег img повине знаходитись у середині тега a: <a>
+      <imgsrc=”шлях”>
+    </a>
+  </h1>
+  
+  <script>
+
+    function getBanner(img, title, link) {
+      let bannerBild = 
+        `<h1>${title}</h1>
+        <a target="_blank" href="${link}">
+          <img style="width: 150px; height: 150px;" src="${img}">
+        </a>`
+        return bannerBild
+    }
+
+    const userTitle = prompt('Вкажіть заголовок')
+    const userImg = prompt('Вкажіть посилання на зображення')
+    const userLInk = prompt('Вкажіть Link')
+    document.write(getBanner(userImg, userTitle, userLInk))
+
+  </script>
+</body>
+
+</html>

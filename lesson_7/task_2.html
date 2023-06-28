@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task 2</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    Задача 2. Створити функцію, яка за номером дня дозволяє з’ясувати чи є цей день робочим.
+  </h1>
+
+  <script>
+    function getDay(day) {
+      let res
+      switch (day) {
+        case 1:
+          res = 'Понеділок. Це робочий день'
+          break
+        case 2:
+          res = 'Вівторок. Це робочий день'
+          break
+        case 3:
+          res = 'Середа. Це робочий день'
+          break
+        case 4:
+          res = 'Четверг. Це робочий день'
+          break
+        case 5:
+          res = `П'ятниця. Це робочий день`
+          break
+        case 6:
+          res = 'Субота. Це вихідний'
+          break
+        case 7:
+          res = 'Неділя. Це вихідний'
+          break
+        default:
+          res = 'Такого дня тижня не існує.'
+          break
+      }
+      return res
+    }
+
+    const userRequest = parseInt(prompt('Вкажіть день тижня'))
+    alert(getDay(userRequest))
+  </script>
+</body>
+
+</html>

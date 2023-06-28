@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task 4</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    Задача 4. Створити функцію, яка для 3 заданих чисел знаходить одночасно декілька результатів: кількість парних, кількість додатних, кількість більших за 100.
+  </h1>
+
+  <script>
+
+    const userNum1 = parseFloat(prompt('Перше число'))
+    const userNum2 = parseFloat(prompt('Друге число число'))
+    const userNum3 = parseFloat(prompt('Третє число'))
+    
+    function getDoubleNumb(userNum1, userNum2, userNum3) {
+      let count = 0
+      if (userNum1 % 2 === 0)
+      count++
+      if (userNum2 % 2 === 0)
+      count++
+      if (userNum3 % 2 === 0)
+      count++
+
+      return count
+    }
+
+    function getPositiveNumb(userNum1, userNum2, userNum3) {
+      let count = 0
+      if (userNum1 > 0)
+      count++
+      if (userNum2 > 0)
+      count++
+      if (userNum3 > 0)
+      count++
+
+      return count
+    }
+
+    function getMoreHundredNumb(userNum1, userNum2, userNum3) {
+      let count = 0
+      if (userNum1 > 100)
+      count++
+      if (userNum2 > 100)
+      count++
+      if (userNum3 > 100)
+      count++
+
+      return count
+    }
+
+    document.write(`Кількість парних ${getDoubleNumb(userNum1, userNum2, userNum3)}<br>`)
+    document.write(`Кількість додатних ${getPositiveNumb(userNum1, userNum2, userNum3)}<br>`)
+    document.write(`Кількість більших за 100 = ${getMoreHundredNumb(userNum1, userNum2, userNum3)}`)
+    
+
+  </script>
+</body>
+
+</html>

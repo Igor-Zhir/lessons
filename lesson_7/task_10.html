@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task 10</title>
+</head>
+
+<body>
+
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    Задача 10. Дано покази температур (довільна кількість). Розробити функцію, яка дозволить знайти середнє значення для
+    додатних показів температури.
+    </a>
+  </h1>
+
+  <script>
+
+    function getTemp() {
+      const userNumbMonths = parseInt(prompt('Вкажіть цількість місяців'))
+      let tempSum = 0
+      let tempCounter = 0
+      for (let i = 1; i <= userNumbMonths; i++) {
+        const userTempMonths = parseFloat(prompt(`Вкажіть температуру за місяць №${i}`))
+        if (userTempMonths > 0) {
+          tempSum += userTempMonths
+          tempCounter++
+        }
+      }
+      let averageTemp = tempSum / tempCounter
+      return averageTemp.toFixed(2)
+    }
+   
+    document.write(`Середнє значення додатних показів температури складає ${getTemp()} градусів`)
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task 5</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    Задача 5. Створити окремі функції, якіпереводять:
+    1) Сантиметри у дюйми;
+    2) Кілограми у фунти;
+    3) Кілометри у милі.
+  </h1>
+
+  <script>
+
+    const userNum1 = parseFloat(prompt('Сантиметри у дюйми'))
+    const userNum2 = parseFloat(prompt('Кілограми у фунти'))
+    const userNum3 = parseFloat(prompt('Кілометри у милі'))
+
+    function getCmToIn(userNum1) {
+      const cmToIn = userNum1 * 0.393
+      return cmToIn
+    }
+    function getKgToPound(userNum2) {
+      const kgToPound = userNum2 * 2.204
+      return kgToPound
+    }
+    function getKmToMl(userNum3) {
+      const kmToMl = userNum2 * 0.621
+      return kmToMl
+    }
+
+    document.write(`${userNum1} см це ${getCmToIn(userNum1).toFixed(3)} дюйма<br>`)
+    document.write(`${userNum2} кг це ${getKgToPound(userNum2).toFixed(3)} фунтів<br>`)
+    document.write(`${userNum3} км це ${getKmToMl(userNum3).toFixed(3)} милі<br>`)
+
+  </script>
+</body>
+
+</html>

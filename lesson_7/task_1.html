@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task 1</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    Задача 1. Створити функцію, яка за номером місяця повертає його назву.
+  </h1>
+
+  <script>
+
+    function getMonhts(months) {
+      let res
+      switch (months) {
+        case 12: res = 'Грудень'
+        break
+        case 1: res = 'Січень'
+        break
+        case 2: res = 'Лютий'
+        break
+        case 3: res = 'Березень'
+        break
+        case 4: res = 'Квітень'
+        break
+        case 5: res = 'Травень'
+        break
+        case 6: res = 'Червень'
+        break
+        case 7: res = 'Липень'
+        break
+        case 8: res = 'Серпень'
+        break
+        case 9: res = 'Вересень'
+        break
+        case 10: res = 'Жовтень'
+        break
+        case 11: res = 'Листопад'
+        break
+        default: res = 'Такого міясця не існує.'
+        break 
+        }
+        return res
+    }
+
+    const userRequest = parseInt(prompt('Вкажіть місять року'))
+    alert(getMonhts(userRequest))
+
+  </script>
+</body>
+
+</html>

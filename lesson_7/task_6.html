@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task 6</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    Задача 6. Створити функцію, яка створює таблицю з вказаною кількістю рядків і стовпців (таблиця заповнюється заданим
+    фіксованим повідомленням).
+  </h1>
+
+  <script>
+
+
+    function getTable(row, column, message) {
+      document.write(`<table border="3px">`)
+      for (let i = 0; i < row; i++) {
+        document.write(`<tr>`)
+        for (let j = 0; j < column; j++) {
+          document.write(`<td>`)
+          document.write(`${message}`)
+          document.write(`</td>`)
+        }
+        document.write(`</tr>`)
+      }
+      document.write(`</table>`)
+    }
+
+    const rowNum = parseInt(prompt('Кількість рядків'))
+    const columnNum = parseInt(prompt('Кількість стовпців'))
+    const message = prompt('Вкажіть message')
+    const resGetTable = getTable(rowNum, columnNum, message)
+  
+
+  </script>
+</body>
+
+</html>
