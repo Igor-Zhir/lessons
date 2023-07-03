@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task 4</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    Задача 4. Дано послідовність номерів автомобілів. Підрахувати кількість номерів, які :
+    • починаються на букву «А»;
+    • перша і остання літери співпадають;
+    • складаються з більше ніш 5 символів;
+
+  </h1>
+
+  <script>
+
+    function getCarNumbersArr() {
+      const arr = []
+      const countCarNumbers = parseInt(prompt('Кількість автомобільних номерів'))
+      for (let i = 0; i < countCarNumbers; i++) {     
+        const addCarNumbers = prompt(`Вкажіть автомобільні номери ${i + 1}`)
+        arr.push(addCarNumbers)
+      }
+      return arr
+    }
+
+    function getCarNumbersStartA(resGetCarNumbersArr) {
+      let countA = 0
+      for (let i = 0; i < resGetCarNumbersArr.length; i++) {
+        if (resGetCarNumbersArr[i].charAt(0) === 'A' || resGetCarNumbersArr[i].charAt(0) === 'a' || resGetCarNumbersArr[i].charAt(0) === 'А' || resGetCarNumbersArr[i].charAt(0) === 'а') {
+          countA++
+        }
+      }
+      return countA
+    }
+    function getCarNumbersFirstLastLettersSame(resGetCarNumbersArr) {
+      let count = 0
+      for (let i = 0; i < resGetCarNumbersArr.length; i++) {
+        if (resGetCarNumbersArr[i].charAt(0) === resGetCarNumbersArr[i].charAt(resGetCarNumbersArr[i].length - 1)) {
+          count++
+        }
+      }
+      return count
+    }
+    function getCarNumbersMoreThan5Simb(resGetCarNumbersArr) {
+      let count = 0
+      for (let i = 0; i < resGetCarNumbersArr.length; i++) {
+        if (resGetCarNumbersArr[i].length > 5) {
+          count++
+        }
+      }
+      return count
+    }
+
+    const resGetCarNumbersArr = getCarNumbersArr()
+    const resgetCarNumbersStartA = getCarNumbersStartA(resGetCarNumbersArr)
+    const resGetCarNumbersFirstLastLettersSame = getCarNumbersFirstLastLettersSame(resGetCarNumbersArr)
+    const resGetCarNumbersMoreThan5Simb = getCarNumbersMoreThan5Simb(resGetCarNumbersArr)
+    
+    document.write(`Кількість автономерів які починаються на букву «А» = ${resgetCarNumbersStartA}<br>`)
+    document.write(`Перша і остання літери співпадають = ${resGetCarNumbersFirstLastLettersSame}<br>`)
+    document.write(`Cкладаються з більше ніш 5 символів = ${resGetCarNumbersMoreThan5Simb}<br>`)
+
+  </script>
+</body>
+
+</html>

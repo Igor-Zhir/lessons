@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task 2</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    Задача 2. Дано масив, який зберігає кількість відвідувачів магазину протягом тижня. Вивести на екран:
+    • номери днів, протягом яких кількість відвідувачів була меншою за 20;
+    • номери днів, коли кількість відвідувачів була максимальною;
+    • номери днів, коли кількість відвідувачів була мінімальною;
+    • загальну кількість клієнтів у робочі дні та окремо загальну кількість днів на вихідних.
+  </h1>
+
+  <script>
+    function getVisitors() {
+      const arr = []
+      for (let i = 0; i < 7; i++) {
+        const numberVisitors = parseInt(prompt(`Кількість відвідувачів за день №${i + 1}`))
+        arr.push(numberVisitors)
+      }
+      return arr
+    }
+
+    function getVisitorsLess20(resGetVisitors) {
+      const arr = []
+      for (let i = 0; i < resGetVisitors.length; i++) {
+        if (resGetVisitors[i] < 20) {
+          arr.push([i + 1])
+        }
+      }
+      return arr
+    }
+
+    function getMaxVisitors(resGetVisitors) {
+      let maxVisitorsDay = resGetVisitors[0]
+      let dayCount = 1
+
+      for (let i = 0; i < resGetVisitors.length; i++) {
+        if (resGetVisitors[i] > maxVisitorsDay) {
+          maxVisitorsDay = resGetVisitors[i]
+          dayCount = [i + 1]
+        }
+      }
+      return dayCount
+    }
+
+    function getMinVisitors(resGetVisitors) {
+      let minVisitorsDay = resGetVisitors[0]
+      let dayCount = 1
+
+      for (let i = 0; i < resGetVisitors.length; i++) {
+        if (resGetVisitors[i] < minVisitorsDay) {
+          minVisitorsDay = resGetVisitors[i]
+          dayCount = [i + 1]
+        }
+      }
+      return dayCount
+    }
+
+    function sumWorkDay(resGetVisitors) {
+      let workDay = 0
+
+      for (let i = 0; i <= 4; i++) {
+        workDay += resGetVisitors[i]
+      }
+      return workDay
+    }
+
+    function sumDayOff(resGetVisitors) {
+      let workDay = 0
+
+      for (let i = 5; i <= 6; i++) {
+        workDay += resGetVisitors[i]
+      }
+      return workDay
+    }
+
+
+    const resGetVisitors = getVisitors()
+
+    const resGetVisitorsLess20 = getVisitorsLess20(resGetVisitors)
+    document.write(`Номери днів, протягом яких кількість відвідувачів була меншою за 20 це дні ${resGetVisitorsLess20} <br>`)
+
+    const resGetMaxVisitors = getMaxVisitors(resGetVisitors)
+    document.write(`День коли кількість відвідувачів була максимальною це день ${resGetMaxVisitors} <br>`)
+
+    const resGetMinVisitors = getMinVisitors(resGetVisitors)
+    document.write(`День коли кількість відвідувачів була мінімальною це день ${resGetMinVisitors} <br>`)
+
+    const resSumWorkDay = sumWorkDay(resGetVisitors)
+    document.write(`Загальна кількість у робочі дні ${resSumWorkDay} <br>`)
+
+    const ressumDayOff = sumDayOff(resGetVisitors)
+    document.write(`Загальна кількість відвідувачів у вихідні ${ressumDayOff} <br>`)
+
+
+  </script>
+</body>
+
+</html>

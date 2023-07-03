@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task 3</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    Задача 3. Дано масив імен учнів. З’ясувати скільки разів зустрічається ім’я «Іван».
+  </h1>
+
+  <script>
+    function getNameArr() {
+      const namePeople = []
+      const numberPeople = parseInt(prompt('Вкажіть кількість імен'))
+      for (let i = 0; i < numberPeople; i++) {
+        const addName = prompt(`Вкажіть ім'я`)
+        namePeople.push(addName)
+      }
+      return namePeople
+    }
+
+    function getFindName(resNameArr) {
+      let count = 0
+      for (let i = 0; i < resNameArr.length; i++) {
+        if (resNameArr[i] === 'Ivan') {
+          count++
+        }
+      }
+      return count
+    }
+
+    const resNameArr = getNameArr()
+    const resGetFindName = getFindName(resNameArr)
+    document.write(`Кількість Іванів = ${resGetFindName}`)
+  </script>
+</body>
+
+</html>

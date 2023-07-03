@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task 8</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    Задача 8. Дано одновимірний масив, у якому зберігається певна виграшна сума (елементи заповнюються випадковим чином
+    значеннями від -500 до 500). Надаючи користувачу можливість вибирати номери елементів (поки він не відмовиться).
+    Знаходити сумарний виграш.
+  </h1>
+
+  <script>
+    function randomNum() {
+      return -500 + Math.floor(Math.random() * (500 - (-500) + 1));
+    }
+
+    function numWin() {
+      const arrRandomNum = []
+      for (let i = 0; i <= 20; i++) {
+        arrRandomNum.push(randomNum())
+      }
+      return arrRandomNum
+    }
+
+    function play(resNumWin) {
+      confirm('Починаємо гру?')
+      let sumWin = 0
+      let play
+      do {
+        let userNumber = parseInt(prompt(('Вкажіть комірку від 1 до 20')))
+        sumWin += resNumWin[userNumber]
+        if (resNumWin[userNumber] !== 0) {
+          play = confirm(`Ваш виграш становить ${resNumWin[userNumber]}. Загальний виграш становить ${sumWin}. Граємо далі?`)
+        } else alert('Ви вже відкривали цю комірку')
+        resNumWin[userNumber] = 0
+      } while (play);
+      return sumWin
+    }
+
+    const resNumWin = numWin()
+    const resPlay = play(resNumWin)
+    document.write(`Загальний виграш становить ${resPlay}`)
+
+  </script>
+</body>
+
+</html>

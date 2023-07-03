@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task 7</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    Задача 7. Дано послідовність платіжок протягом року. Знайти сумарну кількість грошей за:
+    1) за весь рік;
+    2) у першійполовині року;
+    3) у другійполовині року;
+    4) за літо;
+    5) за ІІ квартал;
+    6) за парнімісяці (з парними номерами);
+    7) за місяці, які є початковими у сезоні (весна, літо, осінь, зима).
+  </h1>
+
+  <script>
+    function sumYear(paymentArr) {
+      let sum = 0
+      for (const monthPayment of paymentArr) {
+        sum += monthPayment
+      }
+      return sum
+    }
+
+    function sumFirstHalfYear(paymentArr) {
+      let sum = 0
+        for (let i = 0; i <= 5; i++) {
+          sum += paymentArr[i]
+        }
+      return sum
+    }
+    function sumSecondHalfYear(paymentArr) {
+      let sum = 0
+        for (let i = 5; i < paymentArr.length; i++) {
+          sum += paymentArr[i]
+        }
+      return sum
+    }
+    function sumForSummer(paymentArr) {
+      let sum = 0
+        for (let i = 5; i <= 7; i++) {
+          sum += paymentArr[i]
+        }
+      return sum
+    }
+    function sumForSecondQuarter(paymentArr) {
+      let sum = 0
+        for (let i = 3; i <= 5; i++) {
+          sum += paymentArr[i]
+        }
+      return sum
+    }
+    function sumCoupleMonths(paymentArr) {
+      let sum = 0
+        for (let i = 0; i < paymentArr.length; i++) {
+          if (i % 2 !== 0) {
+            sum += paymentArr[i]
+          }
+        }
+      return sum
+    }
+    function sumStartSeason(paymentArr) {
+      let sum = 0
+      for (let i = 0; i < paymentArr.length; i++) {
+          if (i % 3 === 2) {
+            sum += paymentArr[i]
+          }
+        }
+      return sum
+    }
+
+    const paymentArr = [50, 65, 35, 40, 100, 200, 44, 60, 90, 55, 78, 20]
+
+    const resSumYear = sumYear(paymentArr)
+    document.write(`Кількість сплачених коштів за рік: ${resSumYear}<br>`)
+
+    const resSumFirstHalfYear = sumFirstHalfYear(paymentArr)
+    document.write(`Кількість сплачених коштів у першій половині року: ${resSumFirstHalfYear}<br>`)
+
+    const resSumSecondHalfYear = sumSecondHalfYear(paymentArr)
+    document.write(`Кількість сплачених коштів у другій половині року: ${resSumSecondHalfYear}<br>`)
+
+    const resSumForSummer = sumForSummer(paymentArr)
+    document.write(`Кількість сплачених коштів за літо: ${resSumForSummer}<br>`)
+    
+    const resSumForSecondQuarter = sumForSecondQuarter(paymentArr)
+    document.write(`Кількість сплачених коштів за ІІ квартал: ${resSumForSecondQuarter}<br>`)
+
+    const resSumCoupleMonths = sumCoupleMonths(paymentArr)
+    document.write(`Кількість сплачених коштів за парнімісяці: ${resSumCoupleMonths}<br>`)
+
+    const resSumStartSeason = sumStartSeason(paymentArr)
+    document.write(`Кількість сплачених коштів за місяці, які є початковими у сезоні: ${resSumStartSeason}<br>`)
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task 5</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    Задача 5. Дано послідовність оцінок учня. Підрахувати кількість:
+    1) двійок
+    2) кількість хороших оцінок (добре, відмінно);
+    3) кількість оцінок, які нижче середнього.
+  </h1>
+
+  <script>
+    function addGrades(quantGrades) {
+      const arrGrades = []
+      for (let i = 0; i < quantGrades; i++) {
+        const grades = parseInt(prompt('Вкажіть оцінку'))
+        arrGrades.push(grades)
+      }
+      return arrGrades
+    }
+
+    function getGrades2(arr) {
+      let count = 0
+      for (const el of arr) {
+        if (el === 2) {
+          count++
+        }
+      }
+      return count
+    }
+    function getGrades4and5(arr) {
+      let count = 0
+      for (const el of arr) {
+        if (el === 4 || el === 5) {
+          count++
+        }
+      }
+      return count
+    }
+    function getGradesAverage(arr) {
+      let sum = 0
+      for (const grades of arr) {
+        sum += grades
+      }
+      return sum / arr.length
+    }
+    function getBelowAwerage(average, arr) {
+      let count = 0
+      for (const el of arr) {
+        if (el < average) {
+          count++
+        }
+      }
+      return count
+    }
+    const quantGrades = parseInt(prompt('Кількість оцінок'))
+
+    const resAddGrades = addGrades(quantGrades)
+    const resGetGrades2 = getGrades2(resAddGrades)
+    document.write(`Кількість двійок: ${resGetGrades2}<br>`)
+
+    const resGetGrades4and5 = getGrades4and5(resAddGrades)
+    document.write(`кількість хороших оцінок (добре, відмінно): ${resGetGrades4and5}<br>`)
+
+    const resgetGradesAverage = getGradesAverage(resAddGrades)
+
+    const resGetBelowAwerage = getBelowAwerage(resgetGradesAverage, resAddGrades)
+    document.write(`Кількість оцінок, які нижче середнього: ${resGetBelowAwerage}<br>`)
+
+
+  </script>
+</body>
+
+</html>

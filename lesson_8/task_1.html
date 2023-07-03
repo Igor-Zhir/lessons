@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task 1</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    Задача 1. Дано масив, який містить оцінки з К предметів. Знайти середній бал і з’ясувати до якої категорії він відноситься (відмінник, двійочник (має хоча би одну двійку), хорошист (оцінки добре і відмінно), трійочник(є хоча би одна трійка)).
+  </h1>
+
+  <script>
+
+    function inputGrades(numberLessons) {
+      const arr = []
+      for (let i = 0; i < numberLessons; i++) {
+        const gradesStudent = parseInt(prompt(`Оцінки за предмет №${i + 1}`))
+        arr.push(gradesStudent)
+      }
+      return arr
+    }
+
+    function getCategory(resInputGrades) {
+      counter = resInputGrades[0]
+      for (let i = 0; i < resInputGrades.length; i++) {
+        if (resInputGrades[i] < counter) {
+          counter = resInputGrades[i]
+        }
+      }
+      return counter
+    }
+
+    function getResultCategory(result) {
+      let res
+      switch (result) {
+        case 1:
+        case 2: res = 'Двійочник'
+          break;
+        case 3: res = 'Трійочник'
+          break;
+        case 4: res = 'Добре'
+          break;
+        case 5: res = 'Відмінно'
+          break;
+        default: res = 'Оцінки мають буди від 1 до 5'
+          break;
+      }
+      return res
+    }
+
+    const numberLessons = parseInt(prompt('Кількість предметів'))
+    const resInputGrades = inputGrades(numberLessons)
+
+    const resGetCategory = getCategory(resInputGrades)
+
+    const resGetResultCategory = getResultCategory(resGetCategory)
+
+    document.write(`Оцінка ${resGetCategory}! Це ${resGetResultCategory}`)
+
+  </script>
+</body>
+
+</html>
