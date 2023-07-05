@@ -18,13 +18,13 @@
 
   <script>
     function randomNum(min, max) {
-      return min + Math.floor(Math.random() * (max - (min) + 1));
+      return min + Math.floor(Math.random() * (max - min + 1));
     }
 
-    function numWin() {
+    function numWin(elements=20, min=-500, max=500) {
       const arrRandomNum = []
-      for (let i = minNum; i <= maxNum; i++) {
-        arrRandomNum.push(randomNum(minNum, maxNum))
+      for (let i = 0; i < elements; i++) {
+        arrRandomNum.push(randomNum(min, max))
       }
       return arrRandomNum
     }
@@ -43,9 +43,10 @@
       } while (play);
       return sumWin
     }
+    const elementsNum = parseInt(prompt('Вкажіть кількість комірок'))
     const minNum = parseInt(prompt('Вкажіть мінімальне значення'))
     const maxNum = parseInt(prompt('Вкажіть максимальне значення'))
-    const resNumWin = numWin()
+    const resNumWin = numWin(elementsNum, minNum, maxNum)
     const resPlay = play(resNumWin)
     document.write(`Загальний виграш становить ${resPlay}`)
 
