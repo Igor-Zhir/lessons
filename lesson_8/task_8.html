@@ -17,14 +17,14 @@
   </h1>
 
   <script>
-    function randomNum() {
-      return -500 + Math.floor(Math.random() * (500 - (-500) + 1));
+    function randomNum(min, max) {
+      return min + Math.floor(Math.random() * (max - (min) + 1));
     }
 
     function numWin() {
       const arrRandomNum = []
-      for (let i = 0; i <= 20; i++) {
-        arrRandomNum.push(randomNum())
+      for (let i = minNum; i <= maxNum; i++) {
+        arrRandomNum.push(randomNum(minNum, maxNum))
       }
       return arrRandomNum
     }
@@ -34,16 +34,17 @@
       let sumWin = 0
       let play
       do {
-        let userNumber = parseInt(prompt(('Вкажіть комірку від 1 до 20')))
-        sumWin += resNumWin[userNumber]
-        if (resNumWin[userNumber] !== 0) {
+        let userNumber = parseInt(prompt(('Вкажіть номер комірки'))) - 1
+        if (resNumWin[userNumber] !== 'empty') {
+          sumWin += resNumWin[userNumber]
           play = confirm(`Ваш виграш становить ${resNumWin[userNumber]}. Загальний виграш становить ${sumWin}. Граємо далі?`)
+          resNumWin[userNumber] = 'empty'
         } else alert('Ви вже відкривали цю комірку')
-        resNumWin[userNumber] = 0
       } while (play);
       return sumWin
     }
-
+    const minNum = parseInt(prompt('Вкажіть мінімальне значення'))
+    const maxNum = parseInt(prompt('Вкажіть максимальне значення'))
     const resNumWin = numWin()
     const resPlay = play(resNumWin)
     document.write(`Загальний виграш становить ${resPlay}`)
