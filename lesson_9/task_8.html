@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task 8</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    8. Дано масив номерів авто. Сформувати новий масив тих, які починаються на «А»
+  </h1>
+
+  <script>
+
+    function getFirstA(arrСarNumbers) {
+      for (const element of arrСarNumbers) {
+        if (element[0].toUpperCase() === firstLetter) {
+          arrСarNumbersHaveA.push(element.toUpperCase())
+        }
+      }
+    }
+    const arrСarNumbers = ['AB111', 'AX222', 'BV333', 'GB444', 'aA555', 'A2255']
+    const arrСarNumbersHaveA = []
+    const firstLetter = 'A'
+    const resGetFirstA = getFirstA(arrСarNumbers)
+    document.write(arrСarNumbersHaveA)
+
+  </script>
+</body>
+
+</html>

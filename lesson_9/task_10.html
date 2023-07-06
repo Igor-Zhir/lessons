@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task 10</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    10. Дано масив цін у грн. Податок складає 20%. Сформувати масив, який буде містити величину сплаченого податку у
+    грн.
+  </h1>
+
+  <script>
+
+    const arrPrices = ['800', '1200', '1035', '37']
+    const arrPricesTax20 = []
+    const TAX = 0.2
+
+    function sumTax(arrPrices, TAX) {
+      for (const element of arrPrices) {
+        arrPricesTax20.push(element * TAX)
+      }
+      return arrPricesTax20
+    }
+
+    document.write(sumTax(arrPrices, TAX))
+
+  </script>
+</body>
+
+</html>

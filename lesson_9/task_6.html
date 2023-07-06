@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task 6</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    6.Дано масив елементів. Усі елементи, які більші за перший елемент помножити на 2
+  </h1>
+
+  <script>
+    function userNum(num) {
+      const arr = []
+      for (let i = 0; i < num; i++) {
+        const userElement = parseInt(prompt(`Вкажіть число №${i + 1}`))
+        arr.push(userElement)
+      }
+      return arr
+    }
+
+    function getMultipli(arr) {
+      for (const element of arr) {
+        if (element > arr[0]) {
+          document.write(`${element * 2}<br>`)
+        }
+      }
+    }
+
+    const userNumElement = parseInt(prompt('Вкажіть кількість елементв'))
+    const resUserNum = userNum(userNumElement)
+    const resGetMultipli = getMultipli(resUserNum)
+  </script>
+</body>
+
+</html>

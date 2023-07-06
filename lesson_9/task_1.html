@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task 1</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    Користувач вводить кількість елементів. Створити масив, що складається з вказаної кількості елементів заповнених
+    нулями.
+  </h1>
+
+  <script>
+    function getArr(userNumElement) {
+      return new Array(userNumElement).fill(0)
+    }
+
+    const userNumElement = parseInt(prompt('Кількість елементів'))
+    document.write(`Результат: ${getArr(userNumElement)}`)
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task 2</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    2. Користувач вводить кількість елементів. Створити масив, у якому перша половина заповнена 1-цями, а друга
+    заповнена 7-ками.
+  </h1>
+
+  <script>
+    function getArr(userElement = 10, firstNum = 1, secondNum = 7, partArray = 2) {
+      
+      let secondHalfArr = Math.ceil(userElement / partArray)
+   
+      return new Array(userElement).fill(firstNum, 0, secondHalfArr).fill(secondNum, secondHalfArr)
+    }
+
+    const firstNum = 1
+    const secondNum = 7
+    const userNumElement = parseInt(prompt('Кількість елементів'))
+    document.write(`Результат: ${getArr(userNumElement, firstNum, secondNum)}`)
+  </script>
+</body>
+
+</html>

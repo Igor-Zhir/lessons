@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task 4</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    4.Дано масив елементів. Вивести на екран елементи, що більші за 100
+  </h1>
+
+  <script>
+
+    function userNum(num = 4) {
+      const arr = []
+      for (let i = 0; i < num; i++) {
+        const userElement = parseInt(prompt(`Вкажіть число №${i + 1}`))
+        arr.push(userElement)
+      }
+      return arr
+    }
+
+    function moreThan100(arr) {
+      let arrMore100 = []
+      for (const element of arr) {
+        if (element > 100) {
+          arrMore100.push(element)
+        }
+      }
+      return arrMore100
+    }
+
+    const userNumElement = parseInt(prompt('Вкажіть кількість елементв'))
+    const resUserNum = userNum(userNumElement)
+    const resMoreThan100 = moreThan100(resUserNum)
+    document.write(`Числа більше за сто: ${resMoreThan100}`)
+  </script>
+</body>
+
+</html>
