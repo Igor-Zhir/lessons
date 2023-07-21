@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task 2</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    Задача 2. Дано інформацію про прибуток К магазинів протягом тижня. Знайти :
+    1) загальний прибуток кожного масиву за тиждень;
+    2) загальний прибуток усіх магазинів по дням (загальний прибуток усіх магазинів за понеділок, за вівторок, і т.д.);
+    3) загальний прибуток за робочі дні
+    4) загальний прибуток за вихідні дні
+    5) максимальний прибуток за середу
+    6) сформувати загальний список (одновимірний масив) зі значенням, які що більші за 200
+    7) відсортувати кожен тиждень за зростанням
+    8) відсортувати тижні (рядки) за спаданням максимального елементи у цьому тижні (рядку), тобто при порівнянні рядків
+    потрібно порівнювати максимальні елементи у кожному з цих рядків
+    8) упорядкувати тижні (рядки) за спаданням суми елементів у рядку (тобто при порівнянні двох рядків треба знайти
+    суму кожного з рядків і порівнювати ці суми, на основі цих сум буде зрозуміло, який з елементів повинен іти раніше).
+  </h1>
+
+  <script>
+    let arrIncome = [
+      [113, 112, 100, 155, 120, 160, 750],
+      [213, 212, 200, 255, 220, 260, 850],
+      [313, 312, 300, 355, 320, 360, 950],
+      [413, 412, 400, 455, 420, 460, 960],
+      [513, 512, 500, 555, 520, 560, 970],
+      [613, 612, 600, 655, 620, 660, 980],
+    ]
+
+    function storesIncomes(shopStarIndex, shopFinishIndex, dayStarIndex, dayFinishIndex, arr) {
+      let arrSum = []
+      for (let shopIndex = shopStarIndex; shopIndex < shopFinishIndex; shopIndex++) {
+        let sum = 0
+        for (let dayIndex = dayStarIndex; dayIndex < dayFinishIndex; dayIndex++) {
+          sum += arr[shopIndex][dayIndex]
+        }
+        arrSum.push(sum)
+      }
+      return arrSum
+    }
+
+    const shopNum = arrIncome.length
+    const shopIncome = arrIncome[0].length
+    const arrWeekDay = ['Понеділок', 'Вівторок', 'Середу', 'Четверг', 'П"ятницю', 'Суботу', 'Неділю', ]
+    
+    // 1) загальний прибуток кожного масиву за тиждень;
+    const incomePerWeek = storesIncomes(0, shopNum, 0, shopIncome, arrIncome)
+    document.write(`Загальний прибуток кожного масиву за тиждень. Сума: ${incomePerWeek}<br>`)
+    
+    // 2) загальний прибуток усіх магазинів по дням (загальний прибуток усіх магазинів за понеділок, за вівторок, і т.д.);
+    function totalProfitsEachDay(start, finish, arr, arrWeekDay) {
+      for (let i = start; i <= finish; i++) {
+        let profitDay = storesIncomes(0, shopNum, [i], [i + 1], arr).reduce((prevEl, el) => prevEl + el, 0)
+        document.write(`Загальний прибуток усіх магазинів за ${arrWeekDay[i]} складає ${profitDay}<br>`)
+      } 
+    }
+    totalProfitsEachDay(0, 6, arrIncome, arrWeekDay)
+
+    // 3) загальний прибуток за робочі дні
+    const incomeWorkDays = storesIncomes(0, shopNum, 0, 5, arrIncome).reduce((prevSum, el) => el + prevSum, 0)
+    document.write(`Загальний прибуток за робочі дні. Сума: ${incomeWorkDays}<br>`)
+
+    // 4) загальний прибуток за вихідні дні
+    const incomeWeekend = storesIncomes(0, shopNum, 5, shopIncome, arrIncome).reduce((prevSum, el) => el + prevSum, 0)
+    document.write(`Загальний прибуток за вихідні дні. Сума: ${incomeWeekend}<br>`)
+
+    // 5) максимальний прибуток за середу
+    const maxIncomeForWednesday = storesIncomes(0, shopNum, 2, 3, arrIncome).reduce((prevSum, el) => el > prevSum ? el :
+      prevSum, 0)
+    document.write(`Максимальний прибуток за середу: ${maxIncomeForWednesday}<br>`)
+
+    // 6) сформувати загальний список (одновимірний масив) зі значенням, які що більші за 200
+    const linearArr = arrIncome.flat(Infinity).filter(el => el > 200)
+    document.write(`Загальний список (одновимірний масив) зі значенням, які що більші за 200! ${linearArr}<br>`)
+
+  </script>
+</body>
+
+</html>

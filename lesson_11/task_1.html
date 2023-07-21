@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task 1</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    Знайти суми елементів у вказаній області
+  </h1>
+
+  <script>
+    let arr = [
+      [113, 112, 100, 155, 120, 160],
+      [213, 212, 200, 255, 220, 260],
+      [313, 312, 300, 355, 320, 360],
+      [413, 412, 400, 455, 420, 460],
+      [513, 512, 500, 555, 520, 560],
+      [613, 612, 600, 655, 620, 660],
+    ]
+
+    function sumsParts(rowStarIndex, rowFinishIndex, columnStarIndex, columnFinishIndex, rowStep, columnStep) {
+      let sum = 0
+      for (let rowIndex = rowStarIndex; rowIndex < rowFinishIndex; rowIndex += rowStep) {
+        for (let columnIndex = columnStarIndex; columnIndex < columnFinishIndex; columnIndex += columnStep) {
+          sum += arr[rowIndex][columnIndex]
+        }
+      }
+      return sum
+    }
+    const lengthElement = arr.length
+
+    // 1) Верхня ліва четвертина
+    const topLeftPart = sumsParts(0, lengthElement / 2, 0, lengthElement / 2, 1, 1)
+    document.write(`Верхня ліва четвертина. Сума: ${topLeftPart}<br>`)
+
+    // 2) Верхня права четвертина
+    const topRightPart = sumsParts(0, lengthElement / 2, lengthElement / 2, lengthElement, 1, 1)
+    document.write(`Верхня права четвертина. Сума: ${topRightPart}<br>`)
+
+    // 3) Нижня ліва четвертина
+    const bottomLeftPart = sumsParts(lengthElement / 2, lengthElement, 0, lengthElement / 2, 1, 1)
+    document.write(`Нижня ліва четвертина. Сума: ${bottomLeftPart}<br>`)
+
+    // 4) Нижня права четвертина
+    const bottomRightPart = sumsParts(lengthElement / 2, lengthElement, lengthElement / 2, lengthElement, 1, 1)
+    document.write(`Нижня права четвертина. Сума: ${bottomRightPart}<br>`)
+
+    //5) Суму парних рядків
+    const sumEvenRows = sumsParts(0, lengthElement, 0, lengthElement, 2, 1)
+    document.write(`Суму парних рядків: ${sumEvenRows}<br>`)
+
+    //6) Суму непарних стовпців
+    const sumEvenColumns = sumsParts(0, lengthElement, 1, lengthElement, 1, 2)
+    document.write(`Суму непарних стовпців: ${sumEvenColumns}<br>`)
+
+    //7) У парних рядках – непарні стовпці.
+    const abraCadabra = sumsParts(0, lengthElement, 1, lengthElement, 2, 2)
+    document.write(`У парних рядках – непарні стовпці. Сума: ${abraCadabra}<br>`)
+
+    //7.1 ) У непарних рядках – парні стовпці.
+    const brokenBrain = sumsParts(1, lengthElement, 0, lengthElement, 2, 2)
+    document.write(`У непарних рядках – парні стовпці. Сума: ${brokenBrain}<br>`)
+
+  </script>
+</body>
+
+</html>
