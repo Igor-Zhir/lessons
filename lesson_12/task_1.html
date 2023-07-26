@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task 1</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    Задача 1. Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів під час сортування бульбашкою
+  </h1>
+
+  <script>
+    // Функція створення рандомного числа
+    function randomNum(minNum, muxNum) {
+      return minNum + Math.floor(Math.random() * (muxNum - minNum + 1))
+    }
+
+    // Функція створення масива та заповнення масива рандомними числами
+    function getArr(arrLength, minNumRundom, maxNumRundom) {
+      let arrNums = []
+      for (let i = 0; i < arrLength; i++) {
+        arrNums.push(randomNum(minNumRundom, maxNumRundom))
+      }
+      return arrNums
+    }
+    const arrNumbers = (getArr(30, 1, 50))
+
+    function bableSort(arr) {
+      let countChanges = 0
+      do {
+        changed = false
+        for (let i = 1; i < arr.length; i++) {
+          if (arr[i - 1] > arr[i]) {
+            let tmp = arr[i - 1]
+            arr[i - 1] = arr[i]
+            arr[i] = tmp
+            changed = true
+            countChanges++
+            document.write(`${arr}<br>`)
+          }
+        }
+      } while (changed);
+      return countChanges
+    }
+    const resBableSort = bableSort(arrNumbers)
+    document.write(`Кількість обмінів під час сортування бульбашкою: ${resBableSort}<br>`)
+  </script>
+</body>
+
+</html>
