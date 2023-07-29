@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task 1</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    <!-- Задача 1. Описати масив об’єктів – сайтів розроблених компанією з такими властивостями
+    ----- Властивості ------
+    - назва компанії на час розробки (назву періодично змінюють)
+    - власник компанії
+    - споснсори (масив спонсорів)
+    * прізвище спонсора
+    * ім’я спонсора
+    * сума вкладень спонсора
+    - рік випуску
+    - вартість сайту
+    Знайти:
+    1) загальну вартість усіх сайтів
+    2) кількість сайтів, що було зроблено між 2000 та 2009 рр.
+    3) кількість сайтів, де сума спонсорських вкладень була більшою за 100000
+    4) створити загальний список усіх спонсорів (поки можуть повторюватись, просто зібрати усі у масив)
+    5) знайти рік, коли прибуток був найбільшим
+    6) упорядкувати список за спаданням прибутку
+    7) Створити 2 окремих списки з копіями об’єктів, що містять сайти з вартість до 10000 і більше 10000 -->
+  </h1>
+
+  <script>
+    let sitesList = [{
+        nameCompany: 'Easy Site World',
+        ownerCompany: 'Thomas Piterson',
+        sponsors: [{
+            name: 'Emily',
+            surname: 'Johnson',
+            investment: 10000,
+          },
+          {
+            name: 'Benjamin',
+            surname: 'Smith',
+            investment: 20000,
+          },
+          {
+            name: 'Olivia',
+            surname: 'Williams',
+            investment: 5000,
+          },
+          {
+            name: 'Ethan',
+            surname: 'Anderson',
+            investment: 30000,
+          },
+        ],
+        year: 2003,
+        siteCost: 90000,
+      },
+      {
+        nameCompany: 'Easy Site World2',
+        ownerCompany: 'Ethan Anderson',
+        sponsors: [{
+            name: 'Sophia',
+            surname: 'Brown',
+            investment: 25000,
+          },
+          {
+            name: 'Liam',
+            surname: 'Taylor',
+            investment: 20000,
+          },
+          {
+            name: 'Ava',
+            surname: 'Martinez',
+            investment: 15000,
+          },
+          {
+            name: 'Davis',
+            surname: 'Noah',
+            investment: 30000,
+          },
+        ],
+        year: 2012,
+        siteCost: 9000,
+      },
+      {
+        nameCompany: 'Easy Site World3',
+        ownerCompany: 'Isabella Thompson',
+        sponsors: [{
+            name: 'James',
+            surname: 'Travolta',
+            investment: 43000,
+          },
+          {
+            name: 'Lee',
+            surname: 'Charlotte',
+            investment: 52000,
+          },
+          {
+            name: 'Alexander',
+            surname: 'Clark',
+            investment: 8000,
+          },
+          {
+            name: 'Mia',
+            surname: 'Robinson',
+            investment: 2300,
+          },
+        ],
+        year: 2008,
+        siteCost: 198000,
+      },
+      {
+        nameCompany: 'Easy Site World4',
+        ownerCompany: 'Mia Robinson',
+        sponsors: [{
+            name: 'William',
+            surname: 'Lewis',
+            investment: 63000,
+          },
+          {
+            name: 'Amelia',
+            surname: 'Scott',
+            investment: 5700,
+          },
+          {
+            name: 'Michael',
+            surname: 'Turner',
+            investment: 18000,
+          },
+          {
+            name: 'Harper',
+            surname: 'White',
+            investment: 100000,
+          },
+        ],
+        year: 2009,
+        siteCost: 265000,
+      }
+    ]
+
+    // Знайти: 1) загальну вартість усіх сайтів
+    const totalSitesSum = sitesList.reduce((prevTotalCount, site) => prevTotalCount + site.siteCost, 0)
+    document.write(`Загальна вартість усіх сайтів: ${totalSitesSum}<br><br>`)
+
+    // 2) кількість сайтів, що було зроблено між 2000 та 2009 рр.
+    const sitesYear = sitesList.reduce((prevYearCount, siteYear) => siteYear.year >= 2000 && siteYear.year <= 2009 ?
+      prevYearCount + 1 : prevYearCount, 0)
+    document.write(`Кількість сайтів, що було зроблено між 2000 та 2009 рр. Кількість: ${sitesYear}<br><br>`)
+
+    // 3) Кількість сайтів, де сума спонсорських вкладень була більшою за 100000
+    function sponsorInvest(investSum) {
+      let countSitesSponsorInvest = 0;
+      sitesList.forEach(site => {
+        const totalInvestment = site.sponsors.reduce((totalSum, sponsor) => totalSum + sponsor.investment, 0);
+        if (totalInvestment > investSum) {
+          countSitesSponsorInvest++;
+        }
+      });
+      return countSitesSponsorInvest
+    }
+    document.write(
+      `Кількість сайтів, де сума спонсорських вкладень була більшою за 100000: ${sponsorInvest(100000)}<br><br>`)
+
+    // 5) Знайти рік, коли прибуток був найбільшим
+    const maxProfitYearObj = sitesList.reduce((prevProfit, profit) => profit.siteCost > prevProfit.siteCost ? profit :
+      prevProfit)
+    const maxProfitYear = maxProfitYearObj.year;
+    document.write(`Рік, коли прибуток був найбільшим: ${maxProfitYear}<br><br>`)
+
+    // 6) упорядкувати список за спаданням прибутку
+    function sortListProfit(sitesList) {
+      sitesList.sort((rpofit1, rpofit2) => {
+        return rpofit2.siteCost - rpofit1.siteCost
+      })
+      return sitesList
+    }
+    let resSortListProfit = sortListProfit(sitesList)
+
+    document.write(`Список за спаданням:<br>`);
+    resSortListProfit.forEach(siteProfit => {
+      document.write(`${siteProfit.siteCost}<br>`);
+    });
+
+    // 7) Створити 2 окремих списки з копіями об’єктів, що містять сайти з вартість до 10000 і більше 10000
+
+    // сайти з вартість до 10000
+    document.write(`<br>Cайти з вартість до 10000<br>`);
+    const copySitesListCostTo10000 = JSON.parse(JSON.stringify(sitesList)).filter(cost => {
+      if (cost.siteCost < 10000) {
+        document.write(`${cost.siteCost}<br>`);
+      }
+    })
+
+    // сайти з вартість більше 10000
+    document.write(`<br>Cайти з вартість більше 10000<br>`);
+    const copySitesListCostMore10000 = JSON.parse(JSON.stringify(sitesList)).filter(cost => {
+      if (cost.siteCost > 10000) {
+        document.write(`${cost.siteCost}<br>`);
+      }
+    })
+  </script>
+</body>
+
+</html>
