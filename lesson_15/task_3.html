@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 3</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    Задача 3. Розробити клас MultChecker для перевірки таблиці множення
+    ------Поля
+    1. Число, яке перевіряємо (наприклад, перевірка частини таблиці множення на 7)
+    2. Кількість правильних відповідей
+    3. Кількість неправильних відповідей
+    ------Методи
+    1. Генерування прикладу (метод випадковим чином визначає друге число, перше число фіксоване)
+    2. Перевірка правильності вказаної відповіді
+    3. render
+
+  </h1>
+
+  <script>
+    class MultChecker {
+      constructor(numСheck) {
+        this.numСheck = numСheck,
+        this.countCorrectAnswer = 0,
+        this.countIncorrectAnswer = 0
+      }
+      getRandomNum(minValue = 0, maxValue = 9) {
+        return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+      }
+      gameMultiplication() {
+        do {
+          let randomNum = this.getRandomNum()
+          let multiplicationResult = this.numСheck * randomNum
+          const userAnswer = parseInt(prompt(`${this.numСheck} * ${randomNum} = `))
+          if (userAnswer === multiplicationResult) {
+            alert('Вірно')
+            this.countCorrectAnswer += 1
+          } else {
+            alert(`Невірна відповідь! Вірний результат: ${multiplicationResult}`)
+            this.countIncorrectAnswer += 1
+          }
+        } while (confirm('Граємо далі?'));
+      }
+      render() {
+        return document.write(
+          `Гру закінчено!<br>Правильних відповідей: ${this.countCorrectAnswer}<br>Неправильних відповідей: ${this.countIncorrectAnswer}`
+        )
+      }
+    }
+
+    let res = new MultChecker(2)
+    res.gameMultiplication()
+    res.render()
+  </script>
+</body>
+
+</html>

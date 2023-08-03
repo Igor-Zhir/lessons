@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 0</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    Задача 0. Дано два об’єкта. Обидва містять масив цілих чисел. При цьому у одному з них є функція знаходження суми, а
+    у іншому – функція для знаходження добутку тих, які знаходяться між заданими мінімальним і максимальних значенням.
+    Використати обидва методи стосовно обидвох об’єктів (використати call, apply)
+
+  </h1>
+
+  <script>
+
+    let obj1 = {
+      arrNum: [15, 20, 40, 34, 55, 12, 4],
+      getSumArrNum: function () {
+        return this.arrNum.reduce((prevSum, number) => prevSum + number, 0)
+      },
+    }
+
+    let obj2 = {
+      arrNum: [3, 4, 6, 2, 3, 7, 5],
+      getMultipliArrNum: function () {
+        const minArrNum = Math.min(...this.arrNum)
+        const maxArrNum = Math.max(...this.arrNum)
+        return this.arrNum.reduce((prevSum, num) => num > minArrNum && num < maxArrNum ? prevSum * num : prevSum, 1)
+      },
+    }
+
+    const resCall = obj2.getMultipliArrNum.call(obj1)
+    document.write(`${resCall}<br>`)
+
+    const resApply = obj1.getSumArrNum.apply(obj2)
+    document.write(`${resApply}<br>`)
+
+
+  </script>
+</body>
+
+</html>

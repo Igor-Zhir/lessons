@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 4</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    Задача 4. Розробити клас Baner
+    ------Поля
+    1) Масив об’єктів ( графічних зображень та посилань на сайти)
+    ------Методи
+    1) Метод випадкового вибору об’єкта (графічного зображення та посилання)
+    2) Метод виведення випадкового банера
+  </h1>
+
+  <script>
+    const linkList = [{
+        imgLink: 'https://kraina-ua.com/up/tours/139/0_img-200710-1703266515.jpg',
+        siteLink: 'https://kraina-ua.com/ua/tour/parkove-namisto-chernigivschini'
+      },
+      {
+        imgLink: 'https://kraina-ua.com/up/tours/1344/1_img-210524-122034959.jpg',
+        siteLink: 'https://kraina-ua.com/ua/tour/v-gosti-do-galaganiv-sokirintsi--priluki--gustinya'
+      },
+      {
+        imgLink: 'https://kraina-ua.com/up/tours/1559/2_img-220519-14361857.jpg',
+        siteLink: 'https://kraina-ua.com/ua/tour/park-ostriv-sakuri--park-buki'
+      },
+      {
+        imgLink: 'https://kraina-ua.com/up/tours/355/3_img-191507135546.jpg',
+        siteLink: 'https://kraina-ua.com/ua/tour/tunel-kohannya-i-zamki-volini'
+      },
+    ]
+    
+    class Baner {
+      constructor(linkList) {
+        this.linkList = linkList
+      }
+      getRandomNum(minRandNum = 0, maxRandNum = this.linkList.length - 1) {
+        return minRandNum + Math.floor(Math.random() * (maxRandNum - minRandNum + 1))
+      }
+      printRandBanner(){
+        return document.write(`<a href="${this.linkList[this.getRandomNum()].siteLink}"><img src="${this.linkList[this.getRandomNum()].imgLink}" alt=""></a>`)
+      }
+    }
+    let res = new Baner(linkList)
+    res.printRandBanner()
+
+  </script>
+  
+  
+</body>
+
+</html>
