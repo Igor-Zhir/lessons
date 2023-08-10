@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 4</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    Задача 4. Створити клас TBankomat, який моделює роботу банкомата. Клас повинен містити поля для зберігання кількості
+    купюр кожного із номіналів від 5 до 200 гривень. Реалізувати методи знаходження максимальної та мінімальної сум, які
+    може видати банкомат, та метод зняття деякої суми.
+  </h1>
+
+  <script>
+    class TBankomat {
+      constructor(bankomatBanknotesList, initUserBalance) {
+        this.bankomatBanknotes = bankomatBanknotesList
+        this.userBalance = initUserBalance
+      }
+      maxWithdraw() {
+        return this.bankomatBanknotes.reduce((prevSum, sum) => (sum.denomination * sum.quantity) +
+          prevSum, 0)
+      }
+      checkWithdrawMoney() {
+        do {
+          let userSum = parseInt(prompt(`На рахунку залишилось: ${this.userBalance}. Скільки знімаємо?`))
+          alert(`В банкоматі є ${this.maxWithdraw() - userSum}`)
+          if (userSum > this.userBalance) {
+            throw new Error('Немає скільки коштів на рахунку')
+          } else if (userSum < 5) {
+            throw new Error('Не може бути менше за 5')
+          } else if (userSum > this.maxWithdraw()) {
+            throw new Error('Немає скільки коштів в банкоматі')
+          } else {
+            this.userBalance -= userSum
+          }
+        } while (this.userBalance > 0)
+      }
+    }
+
+    let bankomatBanknotesList = [{
+        name: '5 UAH',
+        denomination: 5,
+        quantity: 45
+      },
+      {
+        name: '10 UAH',
+        denomination: 10,
+        quantity: 15
+      },
+      {
+        name: '20 UAH',
+        denomination: 20,
+        quantity: 10
+      },
+      {
+        name: '50 UAH',
+        denomination: 50,
+        quantity: 20
+      },
+      {
+        name: '100 UAH',
+        denomination: 100,
+        quantity: 25
+      },
+      {
+        name: '200 UAH',
+        denomination: 200,
+        quantity: 30
+      }
+    ]
+    let tBankomat = new TBankomat(bankomatBanknotesList, 120000);
+    const maxWithdraw = tBankomat.maxWithdraw();
+    const checkWithdrawMoney = tBankomat.checkWithdrawMoney();
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 2</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    Задача 2. Створити клас TMoney для роботи з грошовими сумами. Сума повинна зберігатися у вигляді доларового
+    еквіваленту. Реалізувати методи додавання/вилучення грошової маси, вказуючи необхідну суму у гривнях, та визначення
+    курсу долара, при якому сума у гривнях збільшиться на 100. Курс долара зберігати в окремому полі.
+  </h1>
+
+  <script>
+    class TMoney {
+      #dollarBalance
+      #dollarRate
+      constructor(initGRNbalance, initDollarRate) {
+        this.Balance = initGRNbalance
+        this.DollarRate = initDollarRate
+      }
+      get Balance() {
+        return this.#dollarBalance * this.#dollarRate
+      }
+      set Balance(grnSum) {
+        if (grnSum <= 0) {
+          throw new Error('Початкова сума не може бути менше за нуль')
+        } else this.#dollarBalance = grnSum / this.#dollarRate
+      }
+      get DollarRate() {
+        return this.#dollarRate
+      }
+      set DollarRate(dollarRateValue) {
+        if (dollarRateValue < 0) {
+          throw new Error('Курс долара не може бути менше за нуль')
+        } else this.#dollarRate = dollarRateValue
+      }
+      addMoney(grnSum) {
+        if (grnSum <= 0) {
+          throw new Error('Сума має бути більше за 0')
+        }
+        return this.Balance += grnSum
+      }
+      removeMoney(grnSum) {
+        if (grnSum <= 0) {
+          throw new Error('Сума має бути більше за 0')
+        }
+        if (grnSum > this.Balance) {
+          throw new Error('Недостатньо коштів на рахунку')
+        }
+        return this.Balance -= grnSum
+      }
+      dollarExchangeRate(exchangeValue) {
+        return (this.Balance + exchangeValue) / this.#dollarBalance
+      }
+    }
+
+    let tMoney = new TMoney(37000, 37);
+    tMoney.Balance = 35500
+    tMoney.DollarRate = 36
+
+    const addMoneyResult = tMoney.addMoney(1000);
+    console.log('addMoney:', addMoneyResult.toFixed(2));
+
+    const removeMoneyResult = tMoney.removeMoney(200);
+    console.log('removeMoney:', removeMoneyResult.toFixed(2));
+
+    const dollarExchangeRateResult = tMoney.dollarExchangeRate(100);
+    console.log('dollarExchangeRate:', dollarExchangeRateResult.toFixed(2));
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 1</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    Задача 1. Створити клас TDate для роботи із датами у форматі “день.місяць.рік”. Дата представляється структурою із
+    трьома полями. Реалізувати методи збільшення/зменшення дати на певну кількість днів, місяців чи років. Введення та
+    виведення дати реалізувати за допомогою методу toString.
+
+  </h1>
+
+  <script>
+
+    //НАЖАЛЬ КОД ПРАЦЮЄ ВІРНО ЛИШЕ ЯКЩО ВКАЗУВАТИ ВЕЛИКИЙ МІНУС! ТОБТО -15 ДНІВ, -10 МІСЯЦІВ. ЯК ВИПРАВИТИ ЩОБ ВСЕ ПРАЦЮВАЛО ВІРНО НЕ ЗНАЮ(((((
+    class TDate {
+      constructor(initDay, initMonth, initYear) {
+        this.day = initDay
+        this.month = initMonth
+        this.year = initYear
+        this.currentDate = new Date()
+        this.currentDay = this.currentDate.getDate()
+        this.currentMonth = this.currentDate.getMonth() + 1
+        this.currentYear = this.currentDate.getFullYear()
+      }
+      getDay() {
+        let newDay = this.currentDay + this.day
+        // ----Додавання днів
+        if (this.day > 0) {
+          if (newDay <= 31) {
+            return newDay
+          } else {
+            this.month += Math.floor(newDay / 31)
+            return newDay % 31
+          }
+          // ----Віднімання днів
+        } else {
+          if (newDay <= 0) {
+            this.month += Math.floor((newDay / 31) - 0.00001)
+            return newDay % 31 + 31
+          }
+        }
+      }
+
+      getMonth() {
+        let newMonth = this.currentMonth + this.month
+        // ----Додавання місяців
+        if (this.month >= 0) {
+          if (newMonth <= 12) {
+            return newMonth
+          } else {
+            this.year += Math.floor(newMonth / 12)
+            return newMonth % 12
+          }
+          // ----Віднімання місяців
+        } else {
+          if (newMonth < 0) {
+            this.year += Math.floor(newMonth / 12)
+            return newMonth % 12 + 12
+          }
+        }
+      }
+      getYear() {
+        return this.currentYear + this.year
+      }
+      toString() {
+        return `Результат: ${this.getDay()}.${this.getMonth()}.${this.getYear()}`;
+      }
+    }
+    const userDay = parseInt(prompt('День'))
+    const userMonth = parseInt(prompt('Місяця'))
+    const userYear = parseInt(prompt('Рік'))
+
+    let tdate = new TDate(userDay, userMonth, userYear);
+    let currentDay = tdate.getDay();
+    let currentMonth = tdate.getMonth();
+    let currentYear = tdate.getYear();
+    let print = tdate.toString();
+    document.write(`${print}<br>`);
+  </script>
+</body>
+
+</html>

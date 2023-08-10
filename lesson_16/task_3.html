@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 3</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    Задача 3. Об’єкт “Фірма” (використати члени-класи).
+    --------поля
+    -назва фірми;
+    -дата заснування (рік, місяць);
+    -послуги (назва послуги, вартість, термін виконання);
+    -адреси філіалів (країна, місто, вулиця, номер будинку);
+    --------методи
+    -визначення кількості років існування фірми;
+    -виведення всіх філіалів фірми у вказаному місті;
+    -виведення на екран послуг, що можуть бути виконані за вказану суму грошей та вказаний термін часу;
+  </h1>
+
+  <script>
+    class Firm {
+      #firmName; #firmFoundation = {}
+      constructor(initFirmName, initMonth, initYear, firmServicesList, firmBranchesList) {
+        this.FirmName = initFirmName
+        this.FirmFoundation = {
+          month: initMonth,
+          year: initYear,
+        }
+        this.firmServices = firmServicesList
+        this.firmBranches = firmBranchesList
+      }
+      currentMonth() {
+        return new Date().getMonth() + 1;
+      }
+      currentYear() {
+        return new Date().getFullYear();
+      }
+      get FirmName() {
+        return this.#firmName
+      }
+      set FirmName(newFirmName) {
+        if (newFirmName.length <= 0) {
+          throw new Error('Назва компанії має містити більше 1 знаку')
+        }
+        this.#firmName = newFirmName;
+      }
+      get FirmFoundation() {
+        return this.#firmFoundation
+      }
+      // Розумію що дата відкриття компанії не може змінюватись але зробив це в цілях практики
+      set FirmFoundation({
+        newMonth,
+        newYear
+      }) {
+        if ((newMonth < 1 || newMonth > 12 || newYear < 0) || newYear > this.currentYear()) {
+          throw new Error('Помилка!')
+        }
+        this.#firmFoundation.month = newMonth;
+        this.#firmFoundation.year = newYear;
+      }
+      getMonthFirm() {
+        let monthSinceFoundation = this.currentMonth() - this.FirmFoundation.month;
+        if (monthSinceFoundation < 0) {
+          monthSinceFoundation += 12;
+        }
+        return monthSinceFoundation;
+      }
+      getYearFirm() {
+        return this.currentYear() - this.FirmFoundation.year
+      }
+      filterFirmBranches(userBranchesRequest) {
+        const filteredBranches = this.firmBranches.filter(branch => branch.city === userBranchesRequest);
+        if (filteredBranches.length > 0) {
+          filteredBranches.forEach(branch => {
+            document.write(
+              `Місто: ${branch.city}. Вулиця: ${branch.street}. Будівля: ${branch.building}<br>`
+            );
+          });
+        } else {
+          alert('Немає в цьому місті філіалів');
+        }
+      }
+      filterServices(userPriceRequest, userDeadlineRequest) {
+        const filteredPriceServices = this.firmServices.filter(service => service.servicePrice <= userPriceRequest &&
+          service.deadline <= userDeadlineRequest)
+        if (filteredPriceServices.length > 0) {
+          filteredPriceServices.forEach(service => {
+            document.write(
+              `Назва послуги: ${service.serviceName}. Вартість послуги: ${service.servicePrice}. Строк виконання роботи днів: ${service.deadline}<br>`
+            );
+          })
+        } else alert('Немає послуг на таку суму');
+      }
+      toString() {
+        return `Фірма відкрита: ${this.FirmFoundation.month}.${this.FirmFoundation.year}.<br> Фірмі: років ${this.getYearFirm()}, місяців ${this.getMonthFirm()}.<br> Назва фірми: ${this.FirmName}<br>`;
+      }
+    }
+
+    const firmServicesList = [{
+        serviceName: 'Ремонт телефону',
+        servicePrice: 800,
+        deadline: 1,
+      },
+      {
+        serviceName: 'Ремонт планшета',
+        servicePrice: 1200,
+        deadline: 2,
+      },
+      {
+        serviceName: 'Ремонт ноутбука',
+        servicePrice: 2100,
+        deadline: 3,
+      },
+      {
+        serviceName: 'Ремонт холодильника',
+        servicePrice: 1300,
+        deadline: 4,
+      },
+      {
+        serviceName: 'Ремонт телевізора',
+        servicePrice: 1850,
+        deadline: 6,
+      },
+      {
+        serviceName: 'Ремонт пилососа',
+        servicePrice: 650,
+        deadline: 7,
+      }
+    ]
+    const firmBranchesList = [{
+        country: 'Ukraine',
+        city: 'Kyiv',
+        street: 'Kyyivsʹka 11',
+        building: 1,
+      },
+      {
+        country: 'Ukraine',
+        city: 'Kyiv',
+        street: 'Kyyivsʹka 12',
+        building: 2,
+      },
+      {
+        country: 'Ukraine',
+        city: 'Kyiv',
+        street: 'Kyyivsʹka 13',
+        building: 3,
+      },
+      {
+        country: 'Ukraine',
+        city: 'Dnipro',
+        street: 'Dniprovsʹka 11',
+        building: 4,
+      },
+      {
+        country: 'Ukraine',
+        city: 'Dnipro',
+        street: 'Dniprovsʹka 12',
+        building: 5,
+      },
+      {
+        country: 'Ukraine',
+        city: 'Dnipro',
+        street: 'Dniprovsʹka 13',
+        building: 6,
+      },
+      {
+        country: 'Ukraine',
+        city: 'Poltava',
+        street: 'Poltavsʹka 11',
+        building: 7,
+      },
+      {
+        country: 'Ukraine',
+        city: 'Poltava',
+        street: 'Poltavsʹka 12',
+        building: 8,
+      },
+      {
+        country: 'Ukraine',
+        city: 'Poltava',
+        street: 'Poltavsʹka 13',
+        building: 9,
+      },
+      {
+        country: 'Ukraine',
+        city: 'Lviv',
+        street: 'Lvivsʹka 11',
+        building: 10,
+      },
+      {
+        country: 'Ukraine',
+        city: 'Lviv',
+        street: 'Lvivsʹka 12',
+        building: 11,
+      },
+      {
+        country: 'Ukraine',
+        city: 'Lviv',
+        street: 'Lvivsʹka 13',
+        building: 12,
+      },
+    ]
+
+    let firm = new Firm('Your Master', 12, 2012, firmServicesList, firmBranchesList);
+    firm.FirmFoundation = {
+      newMonth: 3,
+      newYear: 2014
+    }
+
+    document.write(firm.toString())
+
+    const userBranchesRequest = prompt(
+      'Філіали є в містах: Kyiv, Lviv, Dnipro, Poltava. Вкажіть місто де шукаємо філіал')
+    const filterFirmBranches = firm.filterFirmBranches(userBranchesRequest);
+
+    const userPriceRequest = parseInt(prompt('До якої суми шукаємо послуги?'))
+    const userDeadlineRequest = parseInt(prompt('Строк виконання робіт ДО (від 1 до 6)'))
+    const filterServices = firm.filterServices(userPriceRequest, userDeadlineRequest);
+  </script>
+
+</body>
+
+</html>
