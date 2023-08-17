@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 3</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/task.css">
+</head>
+
+<body>
+  <section class="section">
+    <h1>
+      Задача 3. Користувач задає рік народження. Визначити кількість років користувача.
+    </h1>
+    <label class="label label-tusk">
+      Вкажіть рік народження
+      <input class="birth-year input-style" type="number" value="">
+    </label>
+    <div class="btns">
+      <button class="years-btn btn">Дізнатись скільки років</button>
+    </div>
+    <label class="label label-tusk">
+      Вам років
+      <input class="res-years input-style" type="number" value="">
+    </label>
+  </section>
+  
+  <script>
+    function years() {
+      const birthYear = parseInt(document.querySelector('.birth-year').value)
+      const currentYear = 2023
+      const res = currentYear - birthYear
+      document.querySelector('.res-years').value = res
+    }
+    document.querySelector('.years-btn').onclick = years
+  </script>
+</body>
+
+</html>

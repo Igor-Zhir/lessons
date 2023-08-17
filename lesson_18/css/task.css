@@ -1,0 +1,156 @@
+body {
+  background-color: rgb(0, 143, 86);
+}
+.section {
+  height: 100vh;
+  padding: 60px 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.input-style {
+  display: block;
+  background-color: rgb(204, 204, 204);
+  border: 3px solid rgb(76, 124, 105);
+  margin: 0 auto;
+  padding: 10px;
+  margin-top: 5px;
+}
+
+.label {
+  display: block;
+  text-align: center;
+  padding-bottom: 40px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+.btn:hover {
+  background-color: #126ca8;
+}
+
+.btns{
+  text-align: center;
+}
+
+.btn:not(:last-child) {
+  margin-right: 15px;
+}
+
+.result {
+  padding-top: 15px;
+}
+
+h1 {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.label-tusk {
+  padding-bottom: 10px;
+  padding-top: 0;
+}
+
+.convert {
+  margin-bottom: 30px;
+}
+
+.years-btn {
+  margin-bottom: 30px;
+}
+
+.wishes {
+  font-size: 20px;
+  color: white;
+  padding-bottom: 25px;
+}
+
+table {
+  width: 200px;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  font-family: Arial, sans-serif;
+  margin: 20px auto;
+}
+
+tr {
+  background-color: rgb(204, 204, 204);
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+th {
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  border: 1px solid #ddd;
+}
+
+.inp-grades {
+  padding: 15px 45px;
+  background-color: rgb(204, 204, 204);
+  border: 2px solid #3498db;
+}
+
+.res-grades {
+  font-size: 35px;
+}
+
+.stage-title {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.trip-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.trip:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+.stage {
+  margin: 30px 0;
+  border: 1px solid rgb(40, 88, 40);
+  background-color: rgb(155, 199, 155);
+  padding: 15px;
+}
+
+.btn-go {
+  font-size: 20px;
+  background-color: rgb(155, 199, 155);
+  padding: 10px 60px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+btn-go:hover {
+  background-color: rgb(130, 170, 130);
+}
+
+.result-sum {
+  font-size: 40px;
+  padding: 15px 0 60px;
+}

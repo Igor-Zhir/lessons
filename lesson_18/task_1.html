@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 1</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/task.css">
+</head>
+
+<body>
+  <section class="section">
+    <h1>Задача 1. Розробити калькулятор</h1>
+    <label class="label">
+      First number
+      <input class="first-number input-style" type="number" value="">
+    </label>
+    <label class="label">
+      Second number
+      <input class="second-number input-style" type="number" value="">
+    </label>
+    <div class="btns">
+      <button class="add-btn btn">Додати</button>
+      <button class="subtract-btn btn">Відняти</button>
+      <button class="multiply-btn btn">Помножити</button>
+      <button class="divide-btn btn">Поділити</button>
+    </div>
+    <label class="result label">
+      Result
+      <input class="input-style result-imput" type="number" value="">
+    </label>
+  </section>
+  <script>
+    function calculator(operation) {
+      const firstNum = parseInt(document.querySelector('.first-number').value)
+      const secondNum = parseInt(document.querySelector('.second-number').value)
+      let res
+      if (operation === 'add') {
+        res = firstNum + secondNum
+      } else if (operation === 'subtract') {
+        res = firstNum - secondNum
+      } else if (operation === 'multiply') {
+        res = firstNum * secondNum
+      } else if (operation === 'divide') {
+        res = firstNum / secondNum
+      }
+      document.querySelector('.result-imput').value = res
+    }
+    document.querySelector('.add-btn').addEventListener('click', () =>
+      calculator('add')
+    );
+    document.querySelector('.subtract-btn').addEventListener('click', () =>
+      calculator('subtract')
+    );
+    document.querySelector('.multiply-btn').addEventListener('click', () =>
+      calculator('multiply')
+    );
+    document.querySelector('.divide-btn').addEventListener('click', () =>
+      calculator('divide')
+    );
+  </script>
+</body>
+
+</html>

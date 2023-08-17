@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 5</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/task.css">
+</head>
+
+<body>
+  <section class="section">
+    <h1>
+      Задача 5. Користувач задає кількість рядків і стовпців. Відобразити таблицю,у клітинках якої знаходяться числа 1, 2, 3, …
+    </h1>
+    <label class="label">
+      Rows
+      <input class="rows input-style" type="number" value="">
+    </label>
+    <label class="label">
+      Columns
+      <input class="columns input-style" type="number" value="">
+    </label>
+    <div class="btns">
+      <button class="result-btn add-btn btn">Get result</button>
+    </div>
+  </section>
+ 
+  <script>
+  function createTable() {
+    const row = parseInt(document.querySelector('.rows').value)
+    const column = parseInt(document.querySelector('.columns').value)
+    let num = 1
+
+    const tableEl = document.createElement('table')
+        for (let i = 0; i < row; i++) {
+          const trEl = document.createElement('tr')
+          for (let j = 0; j < column; j++) {
+            const tdEl = document.createElement('td')
+            tdEl.innerText = num
+            trEl.append(tdEl)
+            num++
+          }
+          tableEl.append(trEl)
+        }
+        document.querySelector('.section').append(tableEl)
+  }   
+
+  document.querySelector('.result-btn').onclick = createTable
+  </script>
+</body>
+
+</html>

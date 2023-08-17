@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 6</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/task.css">
+</head>
+
+<body>
+  <section class="section">
+    <h1>
+      Задача 6. Користувач задає кількість оцінок і натискає на кнопку «gettable». В результаті формується таблиця з
+      input, куди користувач вводить оцінки. Після цього натискає на кнопку “getsum” і знаходить середнє значення.
+    </h1>
+    <label class="label">
+      Кількість оцінок
+      <input class="grades input-style" type="number" value="">
+    </label>
+    <div class="btns">
+      <button class="gettable btn">get table</button>
+    </div>
+    <div class="btns">
+      <button class="getsum btn">get sum</button>
+    </div>
+    <div class="res-grades">Середня оцінка: <span class="result res-grades"></span></div>
+  </section>
+
+  <script>
+    function getTable() {
+      const numbsGrades = parseInt(document.querySelector('.grades').value)
+
+      const tableEl = document.createElement('table')
+      for (let i = 0; i < numbsGrades; i++) {
+        const trEl = document.createElement('tr')
+        const inp = document.createElement('input')
+        inp.className = 'inp-grades'
+        inp.type = 'number'
+        trEl.append(inp)
+        tableEl.append(trEl)
+      }
+      document.querySelector('.gettable').after(tableEl)
+    }
+    document.querySelector('.gettable').onclick = getTable
+
+    function getSumGrades() {
+      const inputList = document.querySelectorAll('.inp-grades')
+      let sumGrades = 0
+      for (const inp of inputList) {
+        sumGrades += parseInt(inp.value)
+      }
+      const result = sumGrades / inputList.length
+      document.querySelector('.result').innerText = result.toFixed(2)
+    }
+    document.querySelector('.getsum').onclick = getSumGrades
+  </script>
+</body>
+
+</html>

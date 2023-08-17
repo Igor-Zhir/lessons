@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 7</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/task.css">
+</head>
+
+<body>
+  <section class="section">
+    <h1>
+      Задача 7. Подорож складається з 3 етапів. На кожному етапі користувач може вибрати один з видів транспорту (авто,
+      автобус, літак - випадаючий список), харчування (сніданок, обід, вечеря – checkbоx) та одного з 3-х
+      гідів(використати - radio buttons). Ціни визначте самі. Підрахувати загальну вартість.
+    </h1>
+
+    <div class="stage">
+      <h2 class="stage-title">Етап 1</h2>
+
+      <div class="trip-transport trip">
+        <h3 class="trip-title">Транспорт</h3>
+        <select class="select">
+          <option value="500">Авто</option>
+          <option value="350">Автобус</option>
+          <option value="990">Літак</option>
+        </select>
+      </div>
+
+      <div class="trip-food trip">
+        <h3 class="trip-title">Харчування</h3>
+        <label>Сніданок<input class="food" type="checkbox" value="20"></label>
+        <label>Обід<input class="food" type="checkbox" value="10"></label>
+        <label>Вечеря<input class="food" type="checkbox" value="30"></label>
+      </div>
+
+      <div class="trip-guide trip">
+        <h3 class="trip-title">Гід</h3>
+        <label>
+          <input type="radio" name="guide-stage-1" value="10"> Ethan
+          <label>
+            <input type="radio" name="guide-stage-1" value="20"> Baars
+          </label>
+          <label>
+            <input type="radio" name="guide-stage-1" value="45"> Grace
+          </label>
+      </div>
+    </div>
+
+    <div class="stage">
+      <h2 class="stage-title">Етап 2</h2>
+
+      <div class="trip-transport trip">
+        <h3 class="trip-title">Транспорт</h3>
+        <select class="select">
+          <option value="500">Авто</option>
+          <option value="350">Автобус</option>
+          <option value="990">Літак</option>
+        </select>
+      </div>
+
+      <div class="trip-food trip">
+        <h3 class="trip-title">Харчування</h3>
+        <label>Сніданок<input class="food" type="checkbox" value="30"></label>
+        <label>Обід<input class="food" type="checkbox" value="20"></label>
+        <label>Вечеря<input class="food" type="checkbox" value="40"></label>
+      </div>
+
+      <div class="trip-guide trip">
+        <h3 class="trip-title">Гід</h3>
+        <label>
+          <input type="radio" name="guide-stage-2" value="10"> Isaac
+          <label>
+            <input type="radio" name="guide-stage-2" value="20"> Grace
+          </label>
+          <label>
+            <input type="radio" name="guide-stage-2" value="45"> Daniel
+          </label>
+      </div>
+    </div>
+
+    <div class="stage">
+      <h2 class="stage-title">Етап 3</h2>
+
+      <div class="trip-transport trip">
+        <h3 class="trip-title">Транспорт</h3>
+        <select class="select">
+          <option value="500">Авто</option>
+          <option value="350">Автобус</option>
+          <option value="990">Літак</option>
+        </select>
+      </div>
+
+      <div class="trip-food trip">
+        <h3 class="trip-title">Харчування</h3>
+        <label>Сніданок<input class="food" type="checkbox" value="50"></label>
+        <label>Обід<input class="food" type="checkbox" value="30"></label>
+        <label>Вечеря<input class="food" type="checkbox" value="130"></label>
+      </div>
+
+      <div class="trip-guide trip">
+        <h3 class="trip-title">Гід</h3>
+        <label>
+          <input type="radio" name="guide-stage-3" value="10"> Benjamin
+          <label>
+            <input type="radio" name="guide-stage-3" value="20"> Natalie
+          </label>
+          <label>
+            <input type="radio" name="guide-stage-3" value="45"> Michael
+          </label>
+      </div>
+    </div>
+
+    <button class="btn-go">Go</button>
+    <p class="result-sum">Загальна сума: <span class="result result-sum">0</span></p>
+  </section>
+
+  <script>
+    function getTotalPrice() {
+      const inputList = document.querySelectorAll('input')
+      const transportList = document.querySelectorAll('.select')
+
+      let sum = 0
+      for (const inp of inputList) {
+        if (inp.checked) {
+          sum += parseInt(inp.value)
+        }
+      }
+      for (const select of transportList) {
+        sum += parseInt(select.value)
+      }
+
+      document.querySelector('.result').innerText = sum
+    }
+    document.querySelector('button').onclick = getTotalPrice
+  </script>
+</body>
+
+</html>
