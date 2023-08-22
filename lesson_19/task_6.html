@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 6</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/task.css">
+</head>
+
+<body>
+  <style>
+    h1 {
+      max-width: 800px;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    .competitions {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .competitions__players,
+    .added__players {
+      background-color: #fff;
+      width: 330px;
+      padding: 10px;
+    }
+
+    .competitions__player,
+    .added__player {
+      border: 3px solid #333;
+      padding: 5px;
+      min-height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .competitions__player,
+    .added__player:not(:last-child) {
+      margin-bottom: 10px;
+    }
+
+    .competitions__player-btn,
+    .added__player-btn {
+      background-image: url(img/arr-green.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      width: 50px;
+      height: 50px;
+    }
+
+    .competitions__box-title,
+    .added__box-title {
+      font-size: 20px;
+      padding-bottom: 20px;
+    }
+
+    .added__player {
+      flex-direction: row-reverse;
+    }
+
+    .added__player-btn {
+      background-image: url(img/arr-red.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      width: 50px;
+      height: 50px;
+      transform: rotate(180deg);
+    }
+  </style>
+
+  <h1>
+    Задача 6. Дано список спортсменів. Потрібно сформувати список тих, які будуть брати участь у змаганні. При цьому є
+    два стовпці. В одному відображені всі спортсмени, в іншому – список тих, хто був вибраний. При натисканні на зелену
+    стрілку спортсмен переміщається у список для змагань. При натисканні на червону стрілку спортсмен переміщається у
+    загальний список.
+  </h1>
+  <section class="section">
+    <div class="competitions">
+
+      <div class="competitions__players">
+        <h3 class="competitions__box-title">Загальний список</h3>
+        <ul class="competitions__players-list">
+        </ul>
+      </div>
+
+      <div class="added__players">
+        <h3 class="added__box-title">Обрані для змагання</h3>
+        <ul class="added__players-list">
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    class Competitions {
+      constructor(player) {
+        this.player = player
+      }
+
+      render(selectContainer) {
+        const competitionsPlayer = document.createElement('li')
+        competitionsPlayer.className = 'competitions__player'
+
+        const competitionsPlayerName = document.createElement('span')
+        competitionsPlayerName.className = 'competitions__player-name'
+        competitionsPlayerName.innerText = this.player
+        competitionsPlayer.append(competitionsPlayerName)
+
+        const competitionsPlayerBtn = document.createElement('button')
+        competitionsPlayerBtn.className = 'competitions__player-btn'
+        competitionsPlayer.append(competitionsPlayerBtn)
+
+        competitionsPlayer.addEventListener('click', () => {
+          this.addedPlayerToCompetitions(competitionsPlayer)
+          competitionsPlayer.remove()
+        })
+
+        if (selectContainer) {
+          document.querySelector(selectContainer).append(competitionsPlayer)
+        }
+        return competitionsPlayer
+      }
+      
+      addedPlayerToCompetitions() {
+        const addedPlayer = document.createElement('li')
+        addedPlayer.className = 'added__player'
+
+        const addedPlayerName = document.createElement('span')
+        addedPlayerName.className = 'added__player-name'
+        addedPlayerName.innerText = this.player
+        addedPlayer.append(addedPlayerName)
+
+        const addedPlayerBtn = document.createElement('button')
+        addedPlayerBtn.className = 'added__player-btn'
+        addedPlayer.append(addedPlayerBtn)
+
+        document.querySelector('.added__players-list').append(addedPlayer)
+
+        addedPlayer.addEventListener('click', () => {
+          this.returnToListCompetitions(addedPlayer);
+          addedPlayer.remove();
+        });
+      }
+
+      returnToListCompetitions(addedPlayer) {
+        const player = addedPlayer.querySelector('.added__player-name')
+        this.render('.competitions__players-list');
+        addedPlayer.remove();
+      }
+    }
+
+    const playersList = [
+      "Emily Johnson", "Daniel Williams", "Olivia Smith", "Michael Davis", "Ava Martinez", "Ethan Wilson",
+      "Sophia Taylor", "Liam Anderson", "Isabella Moore", "Noah Jackson"
+    ];
+
+    window.onload = function () {
+      for (const player of playersList) {
+        new Competitions(player).render('.competitions__players-list');
+      }
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 2</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/task.css">
+</head>
+
+<body>
+  <style>
+    h1 {
+      margin-bottom: 50px;
+    }
+
+    input {
+      display: block;
+      border-radius: 2px;
+      padding: 8px 13px;
+      margin: 10px auto;
+    }
+  </style>
+  <section class="section">
+    <h1>
+      Задача 2. Дано 5 елементів input. При введенні значення у якийсь із них необхідно автоматично заповнювати інші
+      (усі попередні у спадному порядку(кожен попередній має значення на 1 менше за наступний), усі наступні на 1 більше
+      (кожен наступне на 1 більше за попереднього)
+    </h1>
+    <input type="number" value="">
+    <input type="number" value="">
+    <input type="number" value="">
+    <input type="number" value="">
+    <input type="number" value="">
+    <input type="number" value="">
+    <input type="number" value="">
+    <input type="number" value="">
+    <input type="number" value="">
+    <input type="number" value="">
+  </section>
+  <script>
+    function changePrevNextValue() {
+      const thisInpElement = this
+      const thisInpValue = parseInt(this.value)
+
+      let inpNextElement = thisInpElement
+      let inpNextElNum = thisInpValue
+      while (inpNextElement.nextElementSibling) {
+        inpNextElement = inpNextElement.nextElementSibling
+        inpNextElement.value = inpNextElNum + 1
+        inpNextElNum++
+      }
+
+      let inpPrevElement = thisInpElement
+      let inpPrevNum = thisInpValue
+      while (inpPrevElement.previousElementSibling) {
+        inpPrevElement = inpPrevElement.previousElementSibling
+        inpPrevElement.value = inpPrevNum - 1
+        inpPrevNum--
+      }
+    }
+
+    const inpList = document.querySelectorAll('input')
+    for (const inp of inpList) {
+      inp.oninput = changePrevNextValue
+    }
+  </script>
+</body>
+
+</html>

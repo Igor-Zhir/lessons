@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 4</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/task.css">
+</head>
+
+<body>
+  <style>
+    h1 {
+      margin-bottom: 50px;
+    }
+
+    .table {
+      border-collapse: collapse;
+      border: 1px solid #ddd;
+      margin: 15px;
+    }
+
+    .table td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .wrapper {
+      display: flex;
+      justify-content: center;
+    }
+
+  </style>
+
+  <section class="section">
+    <h1>
+      Задача 4. Дано 3 таблиці розмірності 3*3 з випадковими числами. Якщо відбувається клік на якійсь із клітинок, то
+      до відповідної таблиці додається червона рамка (спробуйте додати можливість відображення кількості кліків біля
+      назви таблиці з використанням відповідно доданого для цього атрибута).
+    </h1>
+    <div class="wrapper">
+      <table class="table" data-click="0">
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+      <p>Кількість кліків: <span class="click-count"></span></p>
+      <table class="table" data-click="0">
+        <tr>
+          <td>Ячейка 1</td>
+          <td>Ячейка 2</td>
+          <td>Ячейка 3</td>
+        </tr>
+        <tr>
+          <td>Ячейка 4</td>
+          <td>Ячейка 5</td>
+          <td>Ячейка 6</td>
+        </tr>
+        <tr>
+          <td>Ячейка 7</td>
+          <td>Ячейка 8</td>
+          <td>Ячейка 9</td>
+        </tr>
+      </table>
+      <p>Кількість кліків: <span class="click-count"></span></p>
+      <table class="table" data-click="0">
+        <tr>
+          <td>Ячейка 1</td>
+          <td>Ячейка 2</td>
+          <td>Ячейка 3</td>
+        </tr>
+        <tr>
+          <td>Ячейка 4</td>
+          <td>Ячейка 5</td>
+          <td>Ячейка 6</td>
+        </tr>
+        <tr>
+          <td>Ячейка 7</td>
+          <td>Ячейка 8</td>
+          <td>Ячейка 9</td>
+        </tr>
+      </table>
+      <p>Кількість кліків: <span class="click-count"></span></p>
+    </div>
+  </section>
+
+  <script>
+    function getRandom(minValue = 0, maxValue = 10) {
+      return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+    }
+
+    function addNumTable(minRundNum, maxRundNum) {
+      const tdList = document.querySelectorAll('td')
+
+      for (const td of tdList) {
+        td.innerText = getRandom(minRundNum, maxRundNum)
+      }
+    }
+    addNumTable(1, 100)
+
+
+    function clickTable() {
+
+      const tableList = document.querySelectorAll('.table')
+      for (const table of tableList) {
+        table.style.border = '1px solid #ddd'
+      }
+
+      const clickOnTable = this
+      const clickCount = parseInt(clickOnTable.getAttribute('data-click'))
+      const clickCountSpan = clickOnTable.nextElementSibling.querySelector('.click-count')
+
+      if (clickOnTable) {
+        clickOnTable.style.border = '2px solid red';
+        clickOnTable.setAttribute('data-click', clickCount + 1);
+        clickCountSpan.innerText = clickCount + 1;
+      }
+    }
+
+    const tableList = document.querySelectorAll('table')
+    for (const table of tableList) {
+      table.onclick = clickTable
+    }
+  </script>
+</body>
+
+</html>

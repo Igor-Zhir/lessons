@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 5</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/task.css">
+</head>
+
+<body>
+  <style>
+    .card {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 50px;
+    }
+
+    .card__wrapper {
+      max-width: 220px;
+      background-color: #fff;
+      border-radius: 5px;
+    }
+
+    .card__img-container {
+      max-width: 200px;
+    }
+
+    .card__img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .card__label {
+      background-color: rgb(255, 169, 0);
+      height: 24px;
+      padding-left: 8px;
+      padding-right: 8px;
+      font-size: 12px;
+      line-height: 24px;
+      margin: 15px;
+      color: rgb(255, 255, 255);
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .card__title {
+      padding: 10px;
+    }
+
+    .card__price {
+      padding: 0 15px 15px 15px;
+    }
+
+    .card__selected {
+      border: 3px solid red;
+    }
+  </style>
+
+  <section class="section">
+    <h1>
+      Задача 5. Відображаємо картки товарів, які користувач може вибирати. Вибраний товар має зелену рамку (при кліку
+      робити toogle з класом вибраного елемента)
+    </h1>
+    <div class="card">
+    </div>
+  </section>
+
+  <script>
+    class Cards {
+      constructor({
+        label,
+        imgSrc,
+        title,
+        price
+      }) {
+        this.label = label
+        this.imgSrc = imgSrc
+        this.title = title
+        this.price = price
+      }
+      render(selectContainer) {
+        const cardWrapper = document.createElement('a')
+        cardWrapper.className = 'card__wrapper'
+        cardWrapper.setAttribute('href', '#')
+
+        const cardLabel = document.createElement('span')
+        cardLabel.className = 'card__label'
+        cardLabel.innerText = this.label
+        cardWrapper.append(cardLabel)
+
+        const cardImgContainer = document.createElement('div')
+        cardImgContainer.className = 'card__img-container'
+        cardWrapper.append(cardImgContainer)
+
+        const cardImg = document.createElement('img')
+        cardImg.className = 'card__img'
+        cardImg.setAttribute('src', this.imgSrc)
+        cardImgContainer.append(cardImg)
+
+        const cardTitle = document.createElement('h3')
+        cardTitle.className = 'card__title'
+        cardTitle.innerText = this.title
+        cardWrapper.append(cardTitle)
+
+        const cardPrice = document.createElement('p')
+        cardPrice.className = 'card__price'
+        cardPrice.innerText = this.price
+        cardWrapper.append(cardPrice)
+
+        cardWrapper.addEventListener('click', () => {
+          this.toggleBorder(cardWrapper)
+        })
+
+        if (selectContainer) {
+          document.querySelector(selectContainer).append(cardWrapper)
+        }
+        return cardWrapper
+      }
+
+      toggleBorder(card) {
+        card.classList.toggle('card__selected')
+      }
+    }
+    const productList = [{
+        label: 'Акція',
+        imgSrc: 'https://content2.rozetka.com.ua/goods/images/big/343097444.jpg',
+        title: 'Ноутбук Acer Aspire 7',
+        price: '25 999',
+      },
+      {
+        label: 'Топ продаж',
+        imgSrc: 'https://content.rozetka.com.ua/goods/images/big/285466617.jpg',
+        title: 'Ноутбук Acer Aspire 5',
+        price: '21 999',
+      },
+      {
+        label: 'Акція',
+        imgSrc: 'https://content2.rozetka.com.ua/goods/images/big/325444168.jpg',
+        title: 'Ноутбук Lenovo IdeaPad',
+        price: '16 499',
+      },
+      {
+        label: 'Топ продаж',
+        imgSrc: 'https://content.rozetka.com.ua/goods/images/big/342994350.jpg',
+        title: 'Ноутбук ASUS TUF Dash',
+        price: '39 999',
+      },
+      {
+        label: 'Акція',
+        imgSrc: 'https://content2.rozetka.com.ua/goods/images/big/285785585.jpg',
+        title: 'Ноутбук ASUS TUF Gaming',
+        price: '35 999',
+      }
+    ]
+
+    window.onload = function () {
+      for (const itemProduct of productList) {
+        new Cards(itemProduct).render('.card')
+      }
+    }
+  </script>
+</body>
+
+</html>

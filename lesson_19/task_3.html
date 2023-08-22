@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 3</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/task.css">
+</head>
+
+<body>
+  <style>
+    h1 {
+      margin-bottom: 50px;
+    }
+
+    .ul-list {
+      margin: 20px auto;
+      background-color: rgb(62, 62, 62);
+      width: 40px;
+      border-radius: 5px;
+    }
+
+    .li-el {
+      color: #fff;
+      text-align: center;
+      padding: 5px;
+    }
+
+    .wrapper {
+      display: flex;
+      
+    }
+
+    button {
+      display: block;
+      background-color: rgb(214, 242, 92);
+      padding: 10px 20px;
+      margin: 0 auto;
+      color: rgb(53, 53, 53);
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: rgb(184, 210, 70);
+    }
+  </style>
+  <section class="section">
+    <h1>
+      Задача 3. Дано 5 випадковим чином згенерованих нумерованих списків з рандомними числами (кількість елементів у
+      списку випадкова від 1 до 10, елементи випадкові – від 1 до 100). При натисненні на кнопку, нумеровані списки з
+      парною кількістю елементів зафарбувати у зелений колір, інші у червоний.
+    </h1>
+    <div class="wrapper"></div>
+    <button>Go</button>
+  </section>
+  <script>
+    function getRandom(minValue = 0, maxValue = 10) {
+      return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+    }
+
+    function renderLists(numbLists, minLiEl, maxLiEl, minItemliEl, maxItemliEl) {
+      for (let i = 0; i < numbLists; i++) {
+        const ulList = document.createElement('ul')
+        ulList.className = 'ul-list'
+        document.querySelector('.wrapper').append(ulList)
+
+        const itemNum = getRandom(minLiEl, maxLiEl)
+        for (let j = 0; j < itemNum; j++) {
+          const liEl = document.createElement('li')
+          liEl.className = 'li-el'
+          liEl.innerText = getRandom(minItemliEl, maxItemliEl)
+          ulList.append(liEl)
+        }
+      }
+    }
+    renderLists(5, 1, 10, 1, 100)
+
+    function getListsColor() {
+      const ulLists = document.querySelectorAll('ul');
+
+      for (const ulEl of ulLists) {
+        const liEl = ulEl.querySelectorAll('li');
+        if (liEl.length % 2 === 0) { 
+          ulEl.style.backgroundColor = 'green'; 
+        } else {
+          ulEl.style.backgroundColor = 'red';
+        }
+      }
+    }
+
+    document.querySelector('button').onclick = getListsColor
+  </script>
+</body>
+
+</html>

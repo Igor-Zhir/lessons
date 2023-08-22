@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 7</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/task.css">
+</head>
+
+<body>
+  <style>
+    h1 {
+      max-width: 800px;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    .snowflake {
+      position: absolute;
+      background-image: url(img/snowflake.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+  </style>
+  <section class="section">
+    <h1>
+      Задача 7. Відобразити падаючий сніг. Сніжинка з’являється у верхній частині екрану (top =0) і з випадковою швидкістю рухається вниз (у setInterval викликати метод, у якому додавати крок до top). Як тільки сніжинка досягає нижньої частини екрану (top>maxTop) вона знову повинна з’явитись у верхній частині екрану (top=0).
+    </h1>
+  </section>
+
+  <script>
+    class Snowflake {
+      getRandom(minValue, maxValue) {
+        return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+      }
+      render(containerSelector) {
+
+        this.snowflakeDiv = document.createElement('div')
+        this.snowflakeDiv.className = 'snowflake'
+        this.snowflakeDiv.style.left = this.getRandom(0, innerWidth - 30) + 'px'
+        this.snowflakeDiv.style.top = this.getRandom(0, 700) + 'px'
+        this.snowflakeDiv.style.transform = 'rotate(' + this.getRandom(0, 100) + 'deg)';
+        this.snowflakeDiv.style.width = this.getRandom(20, 30) + 'px'
+        this.snowflakeDiv.style.height = this.snowflakeDiv.style.width
+
+        if (containerSelector) {
+          document.querySelector(containerSelector).append(this.snowflakeDiv)
+        }
+      }
+
+      snowflakeFalling(minInterval, maxInterval) {
+        let fallingPx = parseInt(this.snowflakeDiv.style.top)
+
+        setInterval(() => {
+          this.snowflakeDiv.style.top = fallingPx + 'px'
+          fallingPx++
+          if (fallingPx === innerHeight - 40) {
+            fallingPx = 0
+            this.snowflakeDiv.style.left = this.getRandom(0, innerWidth - 30) + 'px'
+            this.snowflakeDiv.style.width = this.getRandom(20, 30) + 'px'
+            this.snowflakeDiv.style.height = this.snowflakeDiv.style.width
+            this.snowflakeDiv.style.transform = 'rotate(' + this.getRandom(0, 100) + 'deg)';
+          }
+        }, this.getRandom(minInterval, maxInterval))
+      }
+    }
+
+    window.onload = function () {
+      for (let i = 0; i < 40; i++) {
+        const snowflake = new Snowflake()
+        snowflake.render('.section')
+        snowflake.snowflakeFalling(20, 30)
+      }
+    }
+  </script>
+</body>
+
+</html>
