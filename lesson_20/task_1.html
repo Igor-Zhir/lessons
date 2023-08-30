@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 1</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/task.css">
+</head>
+
+<body>
+  <style>
+    body {
+      background-color: #333;
+    }
+
+    .section {
+      padding: 0;
+      max-width: 100%;
+      margin: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .star {
+      display: inline-block;
+      position: absolute;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+  </style>
+  <section class="section">
+    <!-- <h1>
+      Задача 1. Сяючі зорі. Вказана кількість зірочок повинна з’являтися у випадковій частині екрану. Кожна зірка (це
+      екземпляр класу Star) з певним кроком і інтервалом збільшується від мінімального до максимального розміру. Як
+      тільки досягнути максимального розміру зірочка повинна з’являтися у іншій випадковій позиції.
+    </h1> -->
+  </section>
+  <script>
+    class Star {
+      constructor(imgPath, minInterval, maxInterval, minWidthStar, maxWidthStar) {
+        this.imgPath = imgPath
+        this.minInterval = minInterval
+        this.maxInterval = maxInterval
+        this.minWidthStar = minWidthStar
+        this.maxWidthStar = maxWidthStar
+      }
+      random(minValue, maxValue) {
+        return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+      }
+      setRandomPosition() {
+        this.img.style.left = this.random(0, innerWidth) + 'px'
+        this.img.style.top = this.random(0, innerHeight) + 'px'
+        this.img.style.width = this.random(this.minWidthStar, this.maxWidthStar) + 'px'
+      }
+      twinklingStars() {
+      setInterval(() => {
+        if (this.img.style.width === this.maxWidthStar + 'px') {
+          this.setRandomPosition();
+        } else {
+          let currentWidth = parseInt(this.img.style.width)
+          this.img.style.width = (currentWidth + 1) + 'px'
+        }
+      }, this.random(this.minInterval, this.maxInterval));
+    }
+      render(containerSelector) {
+        const img = document.createElement('img')
+        img.className = 'star'
+        img.setAttribute('src', this.imgPath)
+        this.img = img
+
+        this.setRandomPosition()
+        this.twinklingStars()
+
+
+        if (containerSelector) {
+          document.querySelector(containerSelector).append(img)
+        }
+      }
+    }
+    window.onload = function () {
+      for (let i = 0; i < 25; i++) {
+        const star = new Star('img/stars.png', 100, 2000, 10, 40)
+        star.render('.section')
+      }
+    }
+  </script>
+</body>
+
+</html>

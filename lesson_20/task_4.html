@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 4</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/task.css">
+</head>
+
+<body>
+  <style>
+    .wrapper {
+      display: flex;
+      gap: 10px;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .inp {
+      padding: 5px 5px;
+      width: 100px;
+    }
+
+    .btn {
+      padding: 10px;
+      background-color: rgb(2, 249, 179);
+      width: 100px;
+    }
+
+    .btn:hover {
+      background-color: rgb(93, 169, 147);
+    }
+  </style>
+  <!-- <h1>
+    Задача 4. На сторінці міститься певна кількість кнопок і інпутів. Підраховувати загальну кількість кліків окремо на
+    кнопках і окремо на інпутах.
+  </h1> -->
+  <section class="section">
+  </section>
+  <script>
+    class CountClicks {
+      constructor(btn, inp) {
+        this.btn = btn
+        this.inp = inp
+      }
+
+      count(){
+        document.querySelector('.wrapper').onclick = this.clicks.bind(this)
+        this.countClickOnInput = 0
+        this.countClickOnButton = 0
+      }
+
+      clicks() {
+        if (event.target.tagName === 'INPUT') {
+          this.countClickOnInput++;
+          document.querySelector('.count-click-input').innerText = this.countClickOnInput
+        }
+
+        if (event.target.tagName === 'BUTTON') {
+          this.countClickOnButton++;
+          document.querySelector('.count-click-button').innerText = this.countClickOnButton
+        }
+      }
+      render(containerSelector) {
+        const wrapper = document.createElement('div')
+        wrapper.className = 'wrapper'
+
+        const countTextBtn = document.createElement('div')
+        countTextBtn.innerText = 'Рахунок кліків по кнопці: '
+        countTextBtn.className = 'count-text-btn'
+        wrapper.append(countTextBtn)
+
+        const spanClickOnbutton = document.createElement('span')
+        spanClickOnbutton.className = 'count-click-button'
+        spanClickOnbutton.innerText = 0
+        countTextBtn.append(spanClickOnbutton)
+
+        const countTextInp = document.createElement('div')
+        countTextInp.innerText = 'Рахунок кліків по інпут: '
+        countTextInp.className = 'count-text-inp'
+        wrapper.append(countTextInp)
+
+        const spanClickOninput = document.createElement('span')
+        spanClickOninput.className = 'count-click-input'
+        spanClickOninput.innerText = 0
+        countTextInp.append(spanClickOninput)
+
+        for (let i = 0; i < 5; i++) {
+          const btn = document.createElement('button')
+          btn.className = 'btn'
+          btn.innerText = this.btn
+          wrapper.append(btn)
+
+          const inp = document.createElement('input')
+          inp.className = 'inp'
+          inp.setAttribute('placeholder', this.inp)
+          wrapper.append(inp)
+        }
+
+        if (containerSelector) {
+          document.querySelector(containerSelector).append(wrapper)
+        }
+       this.count()
+      }
+    }
+
+    window.onload = function () {
+      const countClicks = new CountClicks('Button', 'Input')
+      countClicks.render('.section')
+    }
+  </script>
+</body>
+
+</html>

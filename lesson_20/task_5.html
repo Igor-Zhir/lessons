@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 5</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/task.css">
+</head>
+
+<body>
+  <style>
+    .wrapper {
+      background-color: rgb(222, 222, 222);
+      border: 2px solid #333;
+      border-radius: 5px;
+      max-width: 200px;
+      margin: 0 auto;
+    }
+
+    .label {
+      display: flex;
+      flex-direction: column;
+      max-width: 150px;
+      padding: 10px;
+    }
+
+    .label p {
+      margin-bottom: 5px;
+    }
+
+    .input {
+      padding: 5px;
+    }
+
+    .name {
+      padding: 10px;
+    }
+  </style>
+  <!-- <h1>
+      Задача 5.Динамічний пошук. Є список працівників і поле пошуку. При введенні відображаються усі, які містять вказаний фрагмент
+  </h1> -->
+  <section class="section">
+  </section>
+  <script>
+    class FindName {
+      constructor(nameList) {
+        this.nameList = nameList;
+      }
+      findName() {
+        let items = document.querySelectorAll('.name')
+        const inpValue = this.inp.value.toLowerCase()
+        const filtered = this.nameList.filter(name => name.toLowerCase().includes(inpValue))
+
+        if (inpValue !== '') {
+
+          items.forEach(name => {
+            name.remove()
+          })
+
+          filtered.forEach(name => {
+            const li = document.createElement('li')
+            li.innerText = name
+            li.className = 'name'
+            this.wrapper.append(li)
+          });
+
+        } else {
+
+          items.forEach(name => {
+            name.remove()
+          })
+
+          filtered.forEach(name => {
+            const li = document.createElement('li')
+            li.innerText = name
+            li.className = 'name'
+            this.wrapper.append(li)
+          });
+        }
+      }
+      render(containerSelector) {
+        this.wrapper = document.createElement('div')
+        this.wrapper.className = 'wrapper'
+
+        this.label = document.createElement('label')
+        this.label.className = 'label'
+        this.wrapper.append(this.label)
+
+        this.p = document.createElement('p')
+        this.p.innerText = 'Ім"я'
+        this.label.append(this.p)
+
+        this.inp = document.createElement('input')
+        this.inp.className = 'input'
+        this.inp.placeholder = 'Я шукаю...'
+        this.inp.setAttribute('type', 'text')
+        this.inp.oninput = this.findName.bind(this)
+
+        this.label.append(this.inp)
+
+        if (containerSelector) {
+          document.querySelector(containerSelector).append(this.wrapper)
+        }
+      }
+    }
+    window.onload = function () {
+      const fn = new FindName(nameList)
+      fn.render('.section')
+      fn.findName()
+    }
+    const nameList = [
+      'Петренко', 'Коваленко', 'Сидоренко', 'Шевченко', 'Ковальчук',
+      'Мельник', 'Іваненко', 'Григоренко', 'Ткаченко', 'Лисенко',
+      'Савченко', 'Бондаренко', 'Павленко', 'Кравченко', 'Романенко',
+      'Захаренко', 'Козакенко', 'Марченко', 'Василенко', 'Пономаренко',
+      'Клименко', 'Федоренко', 'Ігоренко', 'Левченко', 'Козловенко',
+      'Мельниченко', 'Біленько', 'Гавриленко', 'Олійникенко', 'Марченко'
+    ];
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 2</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/task.css">
+</head>
+
+<body>
+  <style>
+    body {
+      background-color: #333;
+    }
+
+    .section {
+      display: flex;
+      justify-content: center;
+      padding: 0;
+      max-width: 100%;
+      margin: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tank {
+      display: inline-block;
+      position: absolute;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      width: 70px;
+    }
+
+    .game-over {
+      display: none;
+      font-size: 80px;
+      color: azure;
+      align-items: center;
+      margin: auto 0;
+      text-transform: uppercase;
+    }
+  </style>
+  <section class="section">
+    <!-- <h1>
+        Задача 2. Байрактар. З верхньої частини екрану у випадковій позиції по горизонталі з’являються танки, якіїдуть вниз. При кліку на танк вінвибухає і зникає з екрану. 
+    </h1> -->
+    <p class="game-over">game over</p>
+  </section>
+  <script>
+    class Bayraktar {
+      constructor(imgPath, minInterval, maxInterval) {
+        this.imgPath = imgPath
+        this.minInterval = minInterval
+        this.maxInterval = maxInterval
+      }
+
+      random(minValue, maxValue) {
+        return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+      }
+
+      setRandomPosition() {
+        this.img.style.left = this.random(0, innerWidth - 50) + 'px'
+        this.img.style.top = 0 + 'px'
+      }
+
+      moveTank() {
+        setInterval(() => {
+          if (parseInt(this.img.style.top) >= innerHeight - parseInt(this.img.style.height)) {
+            this.stop();
+          } else {
+            let currentHeight = parseInt(this.img.style.top)
+            this.img.style.top = (currentHeight + 3) + 'px'
+          }
+        }, this.random(this.minInterval, this.maxInterval));
+      }
+
+      stop() {
+        const tanks = document.querySelectorAll('img');
+        const gameOver = document.querySelector('.game-over')
+        tanks.forEach(tank => {
+          tank.remove();
+        });
+        gameOver.style.display = 'block'
+      }
+
+      render(containerSelector) {
+        const img = document.createElement('img')
+        img.className = 'tank'
+        img.setAttribute('src', this.imgPath)
+        img.style.height = '60px'
+        this.img = img
+
+        this.setRandomPosition()
+        this.moveTank()
+
+        img.addEventListener('click', () => {
+          this.setRandomPosition()
+        });
+
+        if (containerSelector) {
+          document.querySelector(containerSelector).append(img)
+        }
+      }
+    }
+
+    window.onload = function () {
+      for (let i = 0; i < 5; i++) {
+        const bayraktar = new Bayraktar('img/tank.png', 20, 50)
+        bayraktar.render('.section')
+      }
+    }
+  </script>
+</body>
+
+</html>
