@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tasks</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/task.css">
+</head>
+
+<body>
+  <style>
+    .tusk {
+      background-color: rgb(189, 184, 184);
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .greetings,
+    .show-date,
+    .season,
+    .week-day,
+    .inp-wrapper,
+    .vacation,
+    .car-rent,
+    .math,
+    .expiration-date {
+      background-color: #fff;
+      border: 2px solid #333;
+      border-radius: 5px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .show-date {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .greetings__text {
+      display: inline-block;
+      background-color: rgb(228, 228, 228);
+      padding: 5px;
+      border-radius: 5px;
+    }
+
+    .input-year-birth,
+    .vacation__input,
+    .car-rent__input,
+    .tusk__input,
+    .expiration-date__input-date,
+    .expiration-date__expiration {
+      background-color: rgb(228, 228, 228);
+      padding: 5px;
+      border: 2px solid #333;
+      border-radius: 5px;
+    }
+
+    .tusk__input {
+      max-width: 100px;
+    }
+
+    .error {
+      color: red;
+    }
+
+    .tusk__button,
+    .expiration-date__btn {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 5px;
+      background-color: rgb(0, 143, 86);
+      color: #fff;
+      border: 2px solid rgb(52, 204, 143);
+      transition: background-color 0.3s, color 0.3s;
+      cursor: pointer;
+    }
+
+    .bg__wrong {
+      background-color: rgb(235, 101, 101);
+    }
+
+    .bg__right {
+      background-color: rgb(150, 238, 150);
+    }
+
+    .tusk__wrap {
+      display: none;
+      margin-bottom: 10px;
+    }
+
+    .expiration-date__check-date {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+      padding: 0 83px;
+    }
+
+    .expiration-date__not-suitable {
+      display: none;
+      background-color: rgb(235, 101, 101);
+
+    }
+
+    .expiration-date__suitable {
+      display: none;
+      background-color: rgb(150, 238, 150);
+    }
+
+    .expiration-date__not-suitable,
+    .expiration-date__suitable {
+      border: 2px solid rgb(53, 53, 53);
+      padding: 5px;
+      border-radius: 5px;
+    }
+
+    .show {
+      display: block;
+    }
+  </style>
+  <section class="section">
+    <div class="greetings">
+      <h2 class="tusk">
+        Задача 1. Визначити привітання у залежності від часу доби (Доброго дня, Доброго ранку, Доброго вечора)
+      </h2>
+      <p class="greetings__text"></p>
+    </div>
+    <div class="show-date">
+      <h2 class="tusk">
+        Задача 2. Вивести дату у форматі: “місяць – рік – вихідний/робочий”
+      </h2>
+      <span class="show-date__month"></span>
+      <span class="show-date__year"></span>
+      <span class="show-date__week-day"></span>
+    </div>
+    <div class="season">
+      <h2 class="tusk">
+        Задача 3. Визначити поточну пору року
+      </h2>
+      <p class="season__current"></p>
+    </div>
+    <div class="week-day">
+      <h2 class="tusk">
+        Задача 4. Вивести назву дня
+      </h2>
+      <p class="week-day__current"></p>
+    </div>
+    <div class="inp-wrapper">
+      <h2 class="tusk">
+        Задача 5. Користувач вводить дату народження. Визначити, скільки йому повних років.
+      </h2>
+      <input class="input-year-birth" type="number" value="" placeholder="Рік народження">
+      <p class="year-birth">Повних років:</p>
+    </div>
+    <div class="vacation">
+      <h2 class="vacation__header tusk">
+        Задача 6. Користувач іде у відпустку на 56 днів. Визначити дату на момент його повернення.
+      </h2>
+      <input id="vacation__input" class="vacation__input" type="number" value="" placeholder="Строк відпустки днів">
+      <p id="vacation__return-vacation" class="vacation__return-vacation">Дата на момент повернення:</p>
+    </div>
+    <div class="car-rent">
+      <h2 class="tusk">
+        Задача 7. Користувач бере авто на вказану кількість годин. Визначити кінцевий час повернення.
+      </h2>
+      <input id="car-rent__input" class="car-rent__input" type="number" value="" placeholder="Кількість годин">
+      <p id="car-rent__return" class="car-rent__return">Час на момент повернення:</p>
+    </div>
+    <div class="math">
+      <h2 class="tusk">
+        Задача 8. Задаємо користувачу задачу з додавання двох чисел. Визначити скільки секунд було використано для
+        розв’язання задачі.
+      </h2>
+      <div class="tusk__wrap">
+        <span id="tusk__num1" class="tusk__num1"></span>
+        <span class="tusk__plus">+</span>
+        <span id="tusk__num2" class="tusk__num2"></span>
+        <span class="tusk__equal">=</span>
+        <input id="tusk__input" class="tusk__input" type="number" value="" placeholder="Відповідь">
+        <span id="tusk__check" class="tusk__check-answer"></span>
+        <div class="tusk__time-result">
+          Правильна відповідь за:
+          <span class="tusk__time-result-span"></span>
+        </div>
+      </div>
+      <button id="tusk__run-tusk-btn" class="tusk__button">Go</button>
+    </div>
+    <div class="expiration-date">
+      <h2 class="tusk">
+        Задача10. Дано дата виробництва йогурта (вводимо рік, місяць, день) та кількість днів придатності. Визначити чи
+        є він придатним на даний момент.
+      </h2>
+      <div class="expiration-date__wrap">
+        <label for="dateManufacture">
+          Вкажіть дату виготовлення
+          <input id="dateManufacture" class="expiration-date__input-date" type="date" value="">
+        </label>
+        <label for="expirationDate">
+          Вкажіть термін придатності
+          <input id="expirationDate" class="expiration-date__expiration" type="number" value=""
+            placeholder="Термін придатності">
+        </label>
+        <div class="expiration-date__check-date">
+          <button id="checkBtn" class="expiration-date__btn">Перевірити</button>
+          <p id="not-suitable" class="expiration-date__not-suitable ">Не придатний</p>
+          <p id="suitable" class="expiration-date__suitable">Придатний</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+
+
+    const date = new Date()
+    const YEAR = date.getFullYear()
+    const MONTH = date.getMonth() + 1
+    const WEEK_DAY = date.getDay()
+    const HOURS = date.getHours()
+
+    // Задача 1. Визначити привітання у залежності від часу доби (Доброго дня, Доброго ранку, Доброго вечора)
+    const greetingsText = document.querySelector('.greetings__text')
+
+    function getGreetings(hours, selector) {
+
+      let greeting = ''
+
+      if (hours >= 23 && hours <= 3) {
+        greeting = 'Доброї ночі'
+      } else if (hours >= 4 && hours <= 11) {
+        greeting = 'Доброго ранку'
+      } else if (hours >= 12 && hours <= 17) {
+        greeting = 'Доброго дня'
+      } else if (hours >= 18 && hours <= 22) {
+        greeting = 'Доброго вечора'
+      }
+      selector.innerText = greeting
+    }
+    getGreetings(HOURS, greetingsText);
+
+
+    // Задача 2. Вивести дату у форматі: “місяць – рік – вихідний/робочий”
+    const showMonth = document.querySelector('.show-date__month')
+    const showYear = document.querySelector('.show-date__year')
+    const showWeekDay = document.querySelector('.show-date__week-day')
+
+    function showDate(month, year, day, monthSelector, yearSelector, daySelector,) {
+      let weekDay = ''
+      if (day === 0 || day === 6) {
+        weekDay = 'Вихідний день'
+      } else {
+        weekDay = 'Робочий день'
+      }
+      monthSelector.innerText = `Поточний місяць: ${month}`
+      yearSelector.innerText = `Поточний рік: ${year}`
+      daySelector.innerText = `Сьогодні: ${weekDay}`
+
+    }
+    showDate(MONTH, YEAR, WEEK_DAY, showMonth, showYear, showWeekDay)
+
+
+    // Задача 3. Визначити поточну пору року
+    const currentSeason = document.querySelector('.season__current')
+
+    function season(month, seasonSelector) {
+      let season = ''
+      switch (month) {
+        case 12:
+        case 1:
+        case 2: season = 'Зима'
+          break;
+        case 3:
+        case 4:
+        case 5: season = 'Весна'
+          break;
+        case 6:
+        case 7:
+        case 8: season = 'Літо'
+          break;
+        case 9:
+        case 10:
+        case 11: season = 'Осінь'
+          break;
+      }
+      seasonSelector.innerText = `Пора року: ${season}`
+    }
+    season(MONTH, currentSeason)
+
+
+    // Задача 4. Вивести назву дня
+    const currentWeekDay = document.querySelector('.week-day__current')
+
+    function nameDay(day, daySelector) {
+      let weekDay = ''
+      switch (day) {
+        case 0: weekDay = 'Неділя'
+          break;
+        case 1: weekDay = 'Понеділок'
+          break;
+        case 2: weekDay = 'Вівторок'
+          break;
+        case 3: weekDay = 'Середа'
+          break;
+        case 4: weekDay = 'Четверг'
+          break;
+        case 5: weekDay = 'П"ятниця'
+          break;
+        case 6: weekDay = 'Субота'
+          break;
+      }
+      daySelector.innerText = `День неділі: ${weekDay}`
+    }
+    nameDay(WEEK_DAY, currentWeekDay)
+
+
+    // Задача 5. Користувач вводить дату народження. Визначити, скільки йому повних років.
+    const inputYearBirth = document.querySelector('.input-year-birth');
+    const yearBirth = document.querySelector('.year-birth')
+
+    function getFullYearsUser(currentYear, yearBirthSelector, inputYearBirth) {
+
+      const inpValue = parseInt(inputYearBirth.value)
+      const userFullYear = currentYear - inpValue
+
+      if (isNaN(inpValue)) {
+        yearBirthSelector.innerText = 'Повних років:'
+      } else if (inpValue > currentYear) {
+        yearBirthSelector.innerText = `Помилка. Не більше ${currentYear} року`
+        yearBirthSelector.classList.add('error')
+      } else {
+        yearBirthSelector.innerText = `Повних років: ${userFullYear}`
+        yearBirthSelector.classList.remove('error')
+      }
+    }
+
+    inputYearBirth.addEventListener('input', () => {
+      getFullYearsUser(YEAR, yearBirth, inputYearBirth)
+    });
+
+
+    // Задача 6. Користувач іде у відпустку на 56 днів. Визначити дату на момент його повернення.
+    const vacationInput = document.getElementById('vacation__input')
+    const vacationReturn = document.getElementById('vacation__return-vacation')
+
+    function vacation(vacationInput, vacationReturn) {
+      const vacationInputValue = parseInt(vacationInput.value)
+
+      let date = new Date()
+      date.setDate(date.getDate() + vacationInputValue)
+      let locale = date.toLocaleDateString('uk-UA')
+
+      if (isNaN(vacationInputValue)) {
+        vacationReturn.innerText = 'Дата на момент повернення:'
+        vacationReturn.classList.remove('error')
+
+      } else if (vacationInputValue < 0) {
+        vacationReturn.innerText = 'Помилка!'
+        vacationReturn.classList.add('error')
+
+      } else {
+        vacationReturn.innerText = `Дата на момент повернення: ${locale}`
+      }
+    }
+
+    vacationInput.addEventListener('input', () => {
+      vacation(vacationInput, vacationReturn)
+    })
+
+
+    // Задача 7. Користувач бере авто на вказану кількість годин. Визначити кінцевий час повернення.
+    const carRentInput = document.getElementById('car-rent__input')
+    const carRentReturn = document.getElementById('car-rent__return')
+
+    function сarRent(rentInput, carReturnSelector) {
+      let carRentInputValue = parseInt(rentInput.value)
+
+      const carRentTime = new Date
+      carRentTime.setHours(carRentTime.getHours() + carRentInputValue)
+
+      const date = carRentTime.toLocaleDateString('uk-UA')
+      const hours = carRentTime.getHours()
+      const minutes = carRentTime.getMinutes().toString().padStart(2, '0')
+
+      if (!isNaN(carRentInputValue) && carRentInputValue > 0) {
+        carReturnSelector.innerText = `Час на момент повернення: ${hours}:${minutes} / ${date}`
+
+      } else if (isNaN(carRentInputValue)) {
+        carReturnSelector.innerText = 'Час на момент повернення:'
+
+      } else if (carRentInputValue < 0) {
+        rentInput.value = ''
+      }
+    }
+
+    carRentInput.addEventListener('input', () => {
+      сarRent(carRentInput, carRentReturn)
+    })
+
+
+    // Задача 8. Задаємо користувачу задачу з додавання двох чисел. Визначити скільки секунд було використано для розв’язання задачі.
+    function assignmentTask() {
+      function randomNum(minValue = 0, maxValue = 10) {
+        return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+      }
+
+      const runTusk = document.getElementById('tusk__run-tusk-btn')
+      const tuskInput = document.getElementById('tusk__input')
+      const tuskNum1 = document.getElementById('tusk__num1')
+      const tuskNum2 = document.getElementById('tusk__num2')
+      const tuskCheck = document.getElementById('tusk__check')
+      const tuskWrap = document.querySelector('.tusk__wrap')
+      const tuskTimeResultSpan = document.querySelector('.tusk__time-result-span')
+
+      //Змінні для початку та кінця заміру часу розв’язання задачі.
+      let startTime
+      let endTime
+
+      function clearRes(tuskCheck, tuskInput, tuskTimeResultSpan) {
+        tuskCheck.innerText = ''
+        tuskInput.value = ''
+        tuskInput.removeAttribute('readonly');
+        tuskInput.classList.remove('bg__right')
+        tuskInput.classList.remove('bg__wrong')
+        tuskTimeResultSpan.innerText = ''
+      }
+      let resTusk
+
+      function math(tuskNum1, tuskNum2) {
+        const randomNum1 = randomNum()
+        const randomNum2 = randomNum()
+
+        tuskNum1.innerText = randomNum1
+        tuskNum2.innerText = randomNum2
+
+        resTusk = randomNum1 + randomNum2
+
+        return resTusk
+      }
+      runTusk.addEventListener('click', () => {
+        tuskWrap.style.display = 'block'
+        math(tuskNum1, tuskNum2)
+        clearRes(tuskCheck, tuskInput, tuskTimeResultSpan)
+
+        //Стартовий час перевірки
+        startTime = new Date();
+      })
+
+      function userAnswer(tuskCheck, tuskTimeResult, tuskInput) {
+        const userAnswer = parseInt(tuskInput.value)
+
+        if (userAnswer === resTusk) {
+          //Кінцевий час перевірки
+          endTime = new Date();
+          //Загальний час виконання завданння
+          let taskCompletionTime = (endTime - startTime) / 1000
+          //Вивід часу на екран
+          tuskTimeResult.innerText = `${taskCompletionTime.toFixed(2)} сек`
+
+          tuskCheck.innerText = 'Вірно'
+          tuskInput.setAttribute('readonly', 'readonly');
+          tuskInput.classList.add('bg__right')
+
+        } else {
+          tuskCheck.innerText = 'Не вірно'
+          tuskInput.classList.add('bg__wrong')
+        }
+      }
+
+      tuskInput.addEventListener('input', () => {
+        userAnswer(tuskCheck, tuskTimeResultSpan, tuskInput)
+      })
+    }
+    assignmentTask()
+
+
+    // Задача10.Дано дата виробництва йогурта(вводимо рік, місяць, день) та кількість днів придатності.Визначити чи є він придатним на даний момент.
+    const dateManufactureId = document.getElementById('dateManufacture')
+    const expirationDateId = document.getElementById('expirationDate')
+    const checkBtnId = document.getElementById('checkBtn')
+    const notSuitable = document.getElementById('not-suitable')
+    const suitable = document.getElementById('suitable')
+
+    function expirationDate(dateManufactureId, expirationDateId, notSuitable, suitable) {
+      const dateManufactureInput = dateManufactureId.value
+      const expirationDateInput = parseInt(expirationDateId.value)
+
+      notSuitable.style.display = 'none'
+      suitable.style.display = 'none'
+
+      const currentDate = new Date()
+
+      const dateManufacture = new Date(dateManufactureInput)
+      dateManufacture.setDate(dateManufacture.getDate() + expirationDateInput)
+
+      if (dateManufacture < currentDate) {
+        notSuitable.style.display = 'block'
+      } else {
+        suitable.style.display = 'block'
+      }
+    }
+    checkBtnId.addEventListener('click', () => {
+      expirationDate(dateManufactureId, expirationDateId, notSuitable, suitable)
+    })
+
+
+  </script>
+</body>
+
+</html>
