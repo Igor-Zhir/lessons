@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 3</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    3. Створити клас Нагадувач. Кожні вказані кількості секунд (використати setInterval) програма нагадує про якусь
+    подію (це просто текст) і також виводиться порядковий номер скільки раз вже нагадування було. Зробити так, щоб
+    неможна було зробити одночасно декілька об’єктів-нагадувачів. Методи зупинки таймера, метод зміни повідомлення без
+    зупинки таймера.
+
+  </h1>
+
+  <script>
+    class Reminder {
+      static nameRemainder
+      static stop = false
+      constructor(nameRemainder, message) {
+        if (Reminder.nameRemainder)
+          return Reminder.nameRemainder
+        Reminder.nameRemainder = this
+        this.message = message
+        this.countTimes = 0
+      }
+      run(intervalValue) {
+        setInterval(() => {
+          if (Reminder.stop === false) {
+            document.write(`${this.message} ${this.countTimes += 1}<br>`)
+          }
+        }, intervalValue)
+      }
+      changeMessage(secondMessage, intervalValue) {
+        setTimeout(() => {
+          this.message = secondMessage
+        }, intervalValue)
+      }
+      stopReminder(intervalValue) {
+        setTimeout(() => {
+          Reminder.stop = true
+        }, intervalValue)
+      }
+    }
+    const r1 = new Reminder('reminder to drink water', 'Go drink water')
+    r1.run(1500)
+    r1.changeMessage('Go drink water. It"s important for your health', 5000)
+    r1.stopReminder(15000)
+
+    const r2 = new Reminder('Sleep reminder')
+    console.log(r2)
+  </script>
+</body>
+
+</html>

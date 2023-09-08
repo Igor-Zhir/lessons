@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 2</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    2. Створити службове авто (водій, марка, номер). Створити клас таким чином, щоб можна було створити тільки один
+    екземпляр цього класу.
+
+  </h1>
+
+  <script>
+    class Driver {
+
+      static carDriver
+
+      constructor(nameDriver, carBrand, numbAuto) {
+
+        if (Driver.carDriver)
+          return Driver.carDriver
+
+        this.nameDriver = nameDriver
+        this.carBrand = carBrand
+        this.numbAuto = numbAuto
+
+        Driver.carDriver = this
+      }
+      toString() {
+        return `${this.nameDriver} - ${this.carBrand} - ${this.numbAuto}`
+      }
+    }
+    const d1 = new Driver('Petro', 'BMW', 'AE8888KI')
+    document.write(`${d1}<hr>`)
+
+    const d2 = new Driver('Ivan', 'BMW', 'AE8888KI')
+    document.write(`${d2}<hr>`)
+  </script>
+</body>
+
+</html>

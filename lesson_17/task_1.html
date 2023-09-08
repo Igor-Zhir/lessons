@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 1</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    Задача 1. Створити клас, що дозволяє виконувати такі операції над масивами: знаходження кількості додатних,
+    кількості від’ємних, кількість входжень деякого числа (статичні методи)
+
+  </h1>
+
+  <script>
+    class ArrayOperations {
+
+      static arrNumbs = []
+
+      static getRandomNum(minValue = -20, maxValue = 20) {
+        return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+      }
+
+      static getArr(arrayLength) {
+        ArrayOperations.arrNumbs = []
+        for (let i = 0; i < arrayLength; i++) {
+          ArrayOperations.arrNumbs.push(ArrayOperations.getRandomNum())
+        }
+        return ArrayOperations.arrNumbs
+      }
+      static findPositiveNumber() {
+        return ArrayOperations.arrNumbs.reduce((count, num) => num > 0 ? count + 1 : count, 0)
+      }
+      static findNegativeNumber() {
+        return ArrayOperations.arrNumbs.reduce((count, num) => num < 0 ? count + 1 : count, 0)
+      }
+      static occurrencesNumber(findNum) {
+        return ArrayOperations.arrNumbs.reduce((count, num) => num === findNum ? count + 1 : count, 0)
+      }
+    }
+
+    document.write(` Масив: ${ArrayOperations.getArr(30)}<hr>`)
+    document.write(`Кількості додатних: ${ArrayOperations.findPositiveNumber()}<hr>`)
+    document.write(`Кількості від’ємних: ${ArrayOperations.findNegativeNumber()}<hr>`)
+    document.write(`Кількості входжень деякого числа: ${ArrayOperations.occurrencesNumber(3)}<hr>`)
+
+
+  </script>
+</body>
+
+</html>

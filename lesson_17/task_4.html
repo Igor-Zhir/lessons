@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 4</title>
+</head>
+
+<body>
+
+  <h1 style="font-size: 25px; max-width: 800px; color: #333; padding-left: 20px;">
+    4. Особиста бібліотека. Картотека домашньої бібліотеки: дані книги (автори (піб, рік народження, короткий опис),
+    назва книги, жанр, видавництво (назва, реєстраційний номер, рік засування)). Реалізувати розділи бібліотеки
+    організувати додавання/вилучення книг та вибір книг за назвою, за ПІБ автора, за видавництвом.
+  </h1>
+
+
+
+  <script>
+    class Book {
+      constructor(initData) {
+        Object.assign(this, initData)
+      }
+    }
+
+    class HomeLibrary {
+      constructor(booksList) {
+        this.booksList = JSON.parse(JSON.stringify(booksList))
+      }
+      addBook(book) {
+        this.booksList.push(book)
+      }
+      removeBook(bookTitle) {
+        this.booksList = this.booksList.filter(book => book.booksTitle !== bookTitle)
+      }
+      getBookForTitle(title) {
+        return this.booksList.filter(book => book.booksTitle === title)
+      }
+      getBookForAuthor(authorlastName) {
+        return this.booksList.filter(book => book.lastName === authorlastName)
+      }
+      getBookForPublishing(publishingTitle) {
+        return this.booksList.filter(book => book.publishing === publishingTitle)
+      }
+      getBookForGenre(genreFilter) {
+        return this.booksList.filter(book => book.genre === genreFilter)
+      }
+    }
+
+
+    const booksList = [
+      new Book({
+        name: 'Ethan',
+        lastName: 'Anderson',
+        birthYear: 1980,
+        description: 'Funny stories about hares',
+        booksTitle: 'Funny hares',
+        genre: 'comedy',
+        publishing: 'The greatest publishing house',
+        regNumb: 568921456,
+        yearIntroduction: 1960
+      }),
+      new Book({
+        name: 'Ella',
+        lastName: 'Baars',
+        birthYear: 1995,
+        description: 'Detectives story',
+        booksTitle: 'Detective Jeam',
+        genre: 'detective',
+        publishing: 'publishing house Krock',
+        regNumb: 4563212311,
+        yearIntroduction: 1960
+      }),
+      new Book({
+        name: 'Isaac',
+        lastName: 'Dawson',
+        birthYear: 1982,
+        description: 'Sci-fi tales of parallel universes',
+        booksTitle: 'Quantum Nexus',
+        genre: 'Science Fiction',
+        publishing: 'Astroverse Books',
+        regNumb: 896547213,
+        yearIntroduction: 2012
+      }),
+      new Book({
+        name: 'Grace',
+        lastName: 'Evans',
+        birthYear: 1978,
+        description: 'Heartwarming stories of love and friendship',
+        booksTitle: 'Sunset Serenity',
+        genre: 'Contemporary Fiction',
+        publishing: 'Harbor Haven Press',
+        regNumb: 452378912,
+        yearIntroduction: 2000
+
+      }),
+      new Book({
+        name: 'Daniel',
+        lastName: 'Williams',
+        birthYear: 1995,
+        description: 'Epic space opera set in a distant galaxy',
+        booksTitle: 'Starforged Odyssey',
+        genre: 'Space Opera',
+        publishing: 'Harbor Haven Press',
+        regNumb: 752369148,
+        yearIntroduction: 2020
+      }),
+      new Book({
+        name: 'Emma',
+        lastName: 'Parker',
+        birthYear: 1989,
+        description: 'Whimsical tales of magical creatures',
+        booksTitle: 'Enchanted Chronicles',
+        genre: 'Fantasy',
+        publishing: 'Harbor Haven Press',
+        regNumb: 695842317,
+        yearIntroduction: 2008
+
+      }),
+      new Book({
+        name: 'Benjamin',
+        lastName: 'Martin',
+        birthYear: 1971,
+        description: 'Thrilling espionage stories during World War II',
+        booksTitle: 'Shadow Operative',
+        genre: 'Historical Fiction',
+        publishing: 'Warrior Words',
+        regNumb: 354871296,
+        yearIntroduction: 1995
+      }),
+      new Book({
+        name: 'Natalie',
+        lastName: 'Harrison',
+        birthYear: 1975,
+        description: 'Romantic tales of a bygone era',
+        booksTitle: 'Whispers of Eternity',
+        genre: 'Romance',
+        publishing: 'Vintage Chronicles',
+        regNumb: 758913245,
+        yearIntroduction: 1985
+
+      }),
+      new Book({
+        name: 'Michael',
+        lastName: 'Barnes',
+        birthYear: 1988,
+        description: 'Epic fantasy saga of power and betrayal',
+        booksTitle: 'Realm of Shadows',
+        genre: 'Fantasy',
+        publishing: 'Mythic Realms',
+        regNumb: 895632110,
+        yearIntroduction: 1998
+      }),
+      new Book({
+        name: 'Sophie',
+        lastName: 'Walker',
+        birthYear: 1992,
+        description: 'Heart-pounding mysteries set in 1920s Paris',
+        booksTitle: 'Crimson Cabaret',
+        genre: 'Mystery',
+        publishing: 'Noir Enigma',
+        regNumb: 447812365,
+        yearIntroduction: 2007
+      }),
+      new Book({
+        name: 'Oliver',
+        lastName: 'Carter',
+        birthYear: 1985,
+        description: 'Intriguing tales of corporate espionage',
+        booksTitle: 'Corporate Conspiracy',
+        genre: 'Thriller',
+        publishing: 'Tech Noir Publications',
+        regNumb: 658921357,
+        yearIntroduction: 2010
+      }),
+      new Book({
+        name: 'Emily',
+        lastName: 'Robinson',
+        birthYear: 1990,
+        description: 'Adventures of a young archaeologist in the Amazon',
+        booksTitle: 'Jungle Chronicles',
+        genre: 'Adventure',
+        publishing: 'Expedition Press',
+        regNumb: 784512369,
+        yearIntroduction: 2005
+      })
+    ]
+
+    const homeLibrary = new HomeLibrary(booksList)
+
+    // Додавання в бібліотеку
+    homeLibrary.addBook({
+      name: 'Olivia',
+      lastName: 'Smith',
+      birthYear: 1995,
+      description: 'Adventure in the Amazon rainforest',
+      booksTitle: 'Amazon Adventure',
+      genre: 'adventure',
+      publishing: 'Wilderness Publications',
+      regNumb: 789546123,
+      yearIntroduction: 1978
+    })
+
+    // Вилучення з бібліотеки
+    homeLibrary.removeBook('Funny hares')
+    console.log(homeLibrary);
+
+    // Пошук по назві книги
+    console.log(homeLibrary.getBookForTitle('Shadow Operative'));
+
+    // Пошук по призвищу автора
+    console.log(homeLibrary.getBookForAuthor('Evans'));
+
+    // Пошук за видавництвом 
+    console.log(homeLibrary.getBookForPublishing('Harbor Haven Press'));
+
+    // Пошук за жанром
+    console.log(homeLibrary.getBookForGenre('Fantasy'));
+
+  </script>
+</body>
+
+</html>
