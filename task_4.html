@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 4</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/task.css">
+</head>
+
+<body>
+  <style>
+    .wrapper {
+      margin-top: 50px;
+      background-color: rgb(216, 216, 216);
+      display: flex;
+      flex-direction: column;
+      border-radius: 5px;
+      padding: 30px;
+    }
+
+    .input {
+      padding: 8px;
+      margin-bottom: 5px;
+      border-radius: 5px;
+    }
+
+    .btn {
+      padding: 10px;
+      background-color: rgb(0, 143, 86);
+      color: aliceblue;
+      border-radius: 5px;
+      width: 150px;
+    }
+
+    .label {
+      margin-bottom: 10px;
+    }
+
+    .label span {
+      margin-right: 5px;
+    }
+
+    .answer {
+      padding: 10px 3px;
+      width: 300px;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .answer__no {
+      background-color: rgb(188, 71, 71);
+      border-radius: 5px;
+    }
+
+    .answer__yes {
+      background-color: rgb(76, 193, 128);
+      border-radius: 5px;
+    }
+  </style>
+  <section class="section">
+    <h1>Задача 4. Користувач задає місяць навчання учня (перевіряти чи є числом, чи від 1 до 12, чи не канікули) та
+      оцінку (перевіряти чи є числом, чи від 1 до 100). Вивести чи зможе він виправити оцінку (якщо оцінка погана і це
+      не останній місяць у семестрі) . Обробку усіх помилок зробити з використанням відповідних класів.</h1>
+
+    <div class="wrapper">
+      <label id="month-label" class="label">
+        <span>Місяць</span>
+        <input class="input" id="month" type="number" placeholder="Вкажіть місяць">
+      </label>
+      <label id="score-label" class="label">
+        <span>Оцінка</span>
+        <input class="input" id="score" type="number" value="" placeholder="Вкажіть оцінку">
+      </label>
+      <button class="btn" id="btn">Перевірити</button>
+    </div>
+  </section>
+  <script>
+    class isNotNumberError extends Error {
+      constructor() {
+        super()
+        this.message = 'Має бути числом'
+        this.name = 'isNotNumberError'
+      }
+    }
+    class isNotRangeMonthError extends Error {
+      constructor() {
+        super()
+        this.message = 'Місяць має бути від 1 до 12'
+        this.name = 'isNotRangeMonthError'
+      }
+    }
+    class isNotLearningTimeError extends Error {
+      constructor() {
+        super()
+        this.message = 'Канікули'
+        this.name = 'isNotLearningTimeError'
+      }
+    }
+    class isNotRangeScoreError extends Error {
+      constructor() {
+        super()
+        this.message = 'Оцінка має бути від 0 до 100'
+        this.name = 'isNotRangeScoreError'
+      }
+    }
+    class emptyValueError extends Error {
+      constructor() {
+        super()
+        this.message = 'Вкажіть значення'
+        this.name = 'emptyValueError'
+      }
+    }
+
+    class Checker {
+      constructor() {
+        this.monthError = false
+        this.scoreError = false
+      }
+      checkMonthValue() {
+
+        const toRemoveSpan = document.querySelector('.month-span')
+        if (toRemoveSpan) {
+          toRemoveSpan.remove()
+        }
+
+        try {
+          let inputMonth = parseInt(document.getElementById('month').value)
+          let inputScore = parseInt(document.getElementById('score').value)
+
+          if (!inputMonth) throw new emptyValueError()
+          if (isNaN(inputMonth)) throw new isNotNumberError()
+          if (inputMonth < 1 || inputMonth > 12) throw new isNotRangeMonthError()
+          if (inputMonth >= 6 && inputMonth <= 8) throw new isNotLearningTimeError()
+          this.monthError = false
+        } catch (err) {
+
+          const span = document.createElement('span')
+          span.className = 'month-span'
+          document.getElementById('month-label').append(span)
+
+          if (err instanceof emptyValueError) {
+            span.innerText = err.message
+
+          } else if (err instanceof isNotNumberError) {
+            span.innerText = err.message
+            document.getElementById('month').value = ''
+
+          } else if (err instanceof isNotRangeMonthError) {
+            span.innerText = err.message
+            document.getElementById('month').value = ''
+
+          } else if (err instanceof isNotLearningTimeError) {
+            span.innerText = err.message
+            document.getElementById('month').value = ''
+          }
+          this.monthError = true
+        }
+      }
+
+      checkScoreValue() {
+
+        const toRemoveSpan = document.querySelector('.score-span')
+        if (toRemoveSpan) {
+          toRemoveSpan.remove()
+        }
+
+        try {
+          let inputMonth = parseInt(document.getElementById('month').value)
+          let inputScore = parseInt(document.getElementById('score').value)
+          if (!inputScore) throw new emptyValueError()
+          if (isNaN(inputScore)) throw new isNotNumberError()
+          if (inputScore > 100 || inputScore < 0) throw new isNotRangeScoreError()
+          this.scoreError = false
+        } catch (err) {
+
+          const span = document.createElement('span')
+          span.className = 'score-span'
+          document.getElementById('score-label').append(span)
+
+          if (err instanceof emptyValueError) {
+            span.innerText = err.message
+
+          } else if (err instanceof isNotNumberError) {
+            span.innerText = err.message
+            document.getElementById('score').value = ''
+
+          } else if (err instanceof isNotRangeScoreError) {
+            span.innerText = err.message
+            document.getElementById('score').value = ''
+          }
+          this.scoreError = true
+        }
+      }
+
+      checkCanChengeScore() {
+
+        const toRemoveAnswer = document.querySelector('.answer')
+        if (toRemoveAnswer) {
+          toRemoveAnswer.remove()
+        }
+
+        if (!this.monthError && !this.scoreError) {
+          const month = parseInt(document.getElementById('month').value)
+          const score = parseInt(document.getElementById('score').value)
+
+          let p = document.createElement('p')
+          p.className = 'answer'
+          document.querySelector('.wrapper').append(p)
+          p.innerText = ''
+
+          if (score < 8) {
+            if (month >= 5 && month <= 8 || month === 12) {
+              p.innerText = 'Не можливо виправити оцінку'
+              p.classList.add('answer__no')
+            } else {
+              p.innerText = 'Можливо виправити оцінку'
+              p.classList.add('answer__yes')
+            }
+          } else {
+            p.innerText = 'Оцінка задовільно. Не потрібно перездавати'
+            p.classList.add('answer__yes')
+          }
+        }
+      }
+    }
+
+    document.getElementById('btn').addEventListener('click', () => {
+      const c1 = new Checker()
+      c1.checkMonthValue()
+      c1.checkScoreValue()
+      c1.checkCanChengeScore()
+    })
+
+
+  </script>
+
+</body>
+
+</html>
