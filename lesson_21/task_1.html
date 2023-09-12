@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 1</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/task.css">
+</head>
+
+<body>
+  <style>
+    body {
+      padding: 30px;
+    }
+  </style>
+  <script>
+
+    // Властивості	ID
+    // ПІБ
+    // Кількість грошей на рахунку
+    // Методи	Додавання грошей
+    // Зняття грошей
+    // ToString
+
+    class Client {
+      #id
+      #fullName
+      #moneyInAccount
+      get Id() {
+        return this.#id
+      }
+      set Id(id) {
+        this.#id = new Date().getMilliseconds()
+      }
+      get FullName() {
+        return this.#fullName
+      }
+      set FullName(setFullName) {
+        if (setFullName === '') {
+          throw new Error('Не має бути пустим')
+        } else if (setFullName.lenght <= 2)
+          throw new Error('Не має бути менше 2 символів')
+
+        this.#fullName = setFullName
+      }
+      get MoneyInAccount() {
+        return this.#moneyInAccount
+      }
+      set MoneyInAccount(setMoney) {
+        if (setMoney < 0) {
+          throw new Error('Не менше 0')
+        }
+        this.#moneyInAccount = setMoney
+      }
+      addMoneyToAccount(addMoneyToAccount) {
+        if (addMoney < 0) {
+          throw new Error('Не менше 0')
+        }
+        this.#moneyInAccount += addMoney
+      }
+      withdrawMoneyFromAccount(withdrawMoney) {
+        if (withdrawMoney > this.#moneyInAccount) {
+          throw new Error('Не можна зняти більше чим на рахунку є коштів')
+        } else if (withdrawMoney < 0) {
+          throw new Error('Не можна зняти менше за нуль')
+        }
+        this.#moneyInAccount -= withdrawMoney
+      }
+      toString() {
+        return `Id: ${this.#id}<br> Full Name: ${this.#fullName}<br> Money in Account: ${this.#moneyInAccount}`
+      }
+    }
+
+    const c1 = new Client()
+    c1.MoneyInAccount(100)
+
+
+  </script>
+</body>
+
+</html>

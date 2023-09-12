@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 3</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/task.css">
+</head>
+
+<body>
+  <style>
+    body {
+      overflow: hidden;
+    }
+
+    .section {
+      position: relative;
+    }
+
+    .img {
+      position: absolute;
+      max-width: 80px;
+    }
+  </style>
+  <section class="section">
+  </section>
+  <script>
+
+    class House {
+      constructor(coordinateX, coordinateY, imgPath, interval) {
+        this.coordinateX = coordinateX
+        this.coordinateY = coordinateY
+        this.imgPath = imgPath
+        this.interval = interval
+      }
+      render(containerSelector) {
+        const img = document.createElement('img')
+        img.className = 'img'
+        img.setAttribute('src', this.imgPath)
+        img.style.left = this.coordinateX + 'px'
+        img.style.top = this.coordinateY + 'px'
+        this.img = img
+
+        if (containerSelector) {
+          document.querySelector(containerSelector).append(img)
+        }
+        this.actionImg()
+      }
+      getRandom(minValue, maxValue) {
+        return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+      }
+      actionImg() {
+        setInterval(() => {
+          this.img.style.maxWidth = this.getRandom(100, 300) + 'px'
+        }, this.interval)
+      }
+    }
+    const h1 = new House(10, 10, './img/house.png', 1000)
+    h1.render('.section')
+
+    class Dog extends House {
+      constructor(coordinateX, coordinateY, imgPath, interval) {
+        super(coordinateX, coordinateY, imgPath, interval)
+      }
+      render(containerSelector) {
+        super.render(containerSelector)
+      }
+
+      actionImg() {
+        setInterval(() => {
+          this.img.style.left = this.getRandom(400, 600) + 'px';
+        }, this.interval);
+      }
+    }
+    const d1 = new Dog(400, 60, './img/dog.png', 1500)
+    d1.render('.section')
+
+    class Bird extends House {
+      constructor(coordinateX, coordinateY, imgPath, interval) {
+        super(coordinateX, coordinateY, imgPath, interval)
+      }
+      render(containerSelector) {
+        super.render(containerSelector)
+      }
+      actionImg() {
+        setInterval(() => {
+          this.img.style.left = this.getRandom(0, innerWidth) + 'px';
+          this.img.style.top = this.getRandom(0, innerHeight) + 'px';
+        }, this.interval);
+      }
+    }
+
+    const b1 = new Bird(0, 0, './img/bird.png', 1500)
+    b1.render('.section')
+  </script>
+</body>
+
+</html>
