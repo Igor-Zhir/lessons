@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ДЗ 23</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/task.css">
+</head>
+
+<body>
+  <style>
+    .wrapper {
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 25px;
+      margin-bottom: 15px;
+    }
+
+    .title {
+      background-color: rgb(189, 184, 184);
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .input {
+      padding: 5px;
+      border-radius: 5px;
+      border: 1px solid #333;
+    }
+  </style>
+  <section class="section">
+
+    <div class="task1 wrapper">
+      <h2 class="task1__title title">
+        Задача 1. Дано масив рядків. Вивести ті, у яких є цифри (використати метод test та
+        регулярні вирази).
+      </h2>
+      <p class="task1__result result"></p>
+    </div>
+
+    <div class="task2 wrapper">
+      <h2 class="task2__title title">
+        Задача 2. Дано масив рядків. Вивести ті, у яких немає цифр.
+      </h2>
+      <p class="task2__result result"></p>
+    </div>
+
+    <div class="task3 wrapper">
+      <h2 class="task3__title title">
+        Задача 3. Дано масив рядків. Вивести ті, у яких є голосні літери.
+      </h2>
+      <p class="task3__result result"></p>
+    </div>
+
+    <div class="task4 wrapper">
+      <h2 class="task4__title title">
+        Задача 4. Дано масив рядків. Вивести ті, у яких немає голосних літер.
+      </h2>
+      <p class="task4__result result"></p>
+    </div>
+
+    <div class="task5 wrapper">
+      <h2 class="task5__title title">
+        Задача 5. Дано масив рядків. Вивести ті, у яких є або цифра 1 або цифра 3.
+      </h2>
+      <p class="task5__result result"></p>
+    </div>
+
+    <div class="task6 wrapper">
+      <h2 class="task6__title title">
+        Задача 6. Дано рядок тексту, вивести усі числа, які є у тексті.
+      </h2>
+      <p class="task6__result result"></p>
+    </div>
+
+    <div class="task7 wrapper">
+      <h2 class="task7__title title">
+        Задача 7. Дано рядок тексту. Знайти усі знаки пунктуації, які були використано.
+      </h2>
+      <p class="task7__result result"></p>
+    </div>
+
+    <div class="task8 wrapper">
+      <h2 class="task8__title title">
+        Задача 8. Дано рядок тексту. Вивести усі складові, які розділені розділовими знаками.
+      </h2>
+      <p class="task8__result result"></p>
+    </div>
+
+    <div class="task9 wrapper">
+      <h2 class="task9__title title">
+        Задача 9. Дано рядок тексту. Перевірити, чи містить він дату у форматі dd.mm.yyyy (dd- день, mm- місяць, yyyy-
+        рік).
+      </h2>
+      <p class="task9__result result"></p>
+    </div>
+
+    <div class="task10 wrapper">
+      <h2 class="task10__title title">
+        Задача 10. Дано рядок тексту. Підрахувати кількість двоцифрових чисел у рядку.
+      </h2>
+      <p class="task10__result result"></p>
+    </div>
+
+    <div class="task11 wrapper">
+      <h2 class="task11__title title">
+        Задача 11. Визначити чи може бути рядок тексту номером банківської картки (приклад: «4142-3433-2323-3434»).
+        Знайти усі такі номери.
+      </h2>
+      <p class="task11__result result"></p>
+    </div>
+
+    <div class="task12 wrapper">
+      <h2 class="task12__title title">
+        Задача 12. Дано адресу сайту. Визначити, чи є він урядовим (містить домен “gov”)
+      </h2>
+      <p class="task12__result result"></p>
+    </div>
+
+    <div class="task13 wrapper">
+      <h2 class="task13__title title">
+        Задача 13. Вибрати усі роки після 2021 року з отриманого повідомлення
+      </h2>
+      <p class="task13__result result"></p>
+    </div>
+
+    <div class="task14 wrapper">
+      <h2 class="task14__title title">
+        Задача 14. Дано номер телефону. Перевірити, чи є цей телефон телефоном з України (починаєтсья на «+38»)
+      </h2>
+      <p class="task14__result result"></p>
+    </div>
+
+    <div class="task15 wrapper">
+      <h2 class="task15__title title">
+        Задача 15. Користувач вводить прізвище та ім’я в одному рядку через пробіл. Замінити пробіл на дефіс.
+      </h2>
+      <p class="task15__result result"></p>
+    </div>
+
+    <div class="task16 wrapper">
+      <h2 class="task16__title title">
+        Задача 16. Користувач вводить дату у форматі «день.місяць.рік». Отримати рядкове представлення дати у форматі
+        «день/місяць/рік»
+      </h2>
+      <input class="input" id="task16" type="date" value="">
+      <p class="task16__result result"></p>
+    </div>
+
+    <div class="task17 wrapper">
+      <h2 class="task17__title title">
+        Задача 17. Користувач вводить день (номер дня (0-6) або «sun,mon,tue,wed,thu,fri,sat»). Визначити, чи є це день
+        вихідним
+      </h2>
+      <input class="input" id="task17" type="text" value="" placeholder="День неділі">
+      <p class="task17__result result"></p>
+    </div>
+  </section>
+  <script>
+
+    let str = ['123 унікальний текст', 'унікальний текст 123', 'унікальний 123 текст', '123унікальний текст', 'унікальний текст123', 'унікальний 123 текст', 'унікальний123 текст', 'унікальний123текст', 'унікальний текст', '123', '123 456', '789', 'ввв', 'тут є голосна буква', 'тут є цифра 3',]
+
+    // Задача 1. Дано масив рядків. Вивести ті, у яких є цифри (використати метод test та регулярні вирази).
+    const task1 = str.filter(el => /\d/ig.test(el))
+    document.querySelector('.task1__result').innerText = task1.join(', ')
+
+
+    // Задача 2. Дано масив рядків. Вивести ті, у яких немає цифр.
+    const task2 = str.filter(el => el.match(/^\D+$/ig))
+    document.querySelector('.task2__result').innerText = task2.join(', ')
+
+
+    // Задача 3. Дано масив рядків. Вивести ті, у яких є голосні літери.
+    const task3 = str.filter(el => el.match(/[АЕЄИІЇОУЮЯ]/ig))
+    document.querySelector('.task3__result').innerText = task3.join(', ')
+
+
+    // Задача 4. Дано масив рядків. Вивести ті, у яких немає голосних літер.
+    const task4 = str.filter(el => el.match(/^[^АЕЄИІЇОУЮЯ]+$/ig))
+    document.querySelector('.task4__result').innerText = task4.join(', ')
+
+
+    // Задача 5. Дано масив рядків. Вивести ті, у яких є або цифра 1 або цифра 3.
+    const task5 = str.filter(el => el.match(/[1, 3]/ig))
+    document.querySelector('.task5__result').innerText = task5.join(', ')
+
+
+    // Задача 6. Дано рядок тексту, вивести усі числа, які є у тексті.
+    const someStr1 = '1 унікальний текст, унікальний текст 2, унікальний 3 текст, 4унікальний текст, унікальний текст5, унікальний 60 текст, унікальний70 текст, унікальний80текст, унікальний текст, 90, 100 110, 120, ввв, тут є голосна буква, тут є цифра 130'
+
+    const task6 = someStr1.match(/\d+/g)
+    document.querySelector('.task6__result').innerText = task6.join(', ')
+
+
+    // Задача 7. Дано рядок тексту. Знайти усі знаки пунктуації, які були використано.
+    const someStr2 = '"Привіт! Як справи? Сонце світить, і пташки співають. Це дійсно чудовий день!"'
+
+    const task7 = someStr2.match(/[^\w\d\sа-яі]/ig)
+    document.querySelector('.task7__result').innerText = task7.join(' ')
+
+
+    // Задача 8. Дано рядок тексту. Вивести усі складові, які розділені розділовими знаками.
+    const someStr3 = 'Привіт! Як справи? Сонце світить, і пташки співають. Це дійсно чудовий день!'
+
+    const task8 = someStr3.split(/[^\w\d\sа-яі]/ig).filter(el => el !== '')
+    document.querySelector('.task8__result').innerText = task8.join(' --- ')
+    // console.log(task8);
+
+
+    // Задача 9. Дано рядок тексту. Перевірити, чи містить він дату у форматі dd.mm.yyyy (dd- день, mm- місяць, yyyy- рік).
+    const someStr4 = 'Привіт! Як справи? Сонце світить, і пташки співають. Це дійсно чудовий день 14.09.2023! А цей не дуже 24.02.2022'
+
+    const task9 = someStr4.match(/\d{2}\.\d{2}\.\d{4}/)
+    document.querySelector('.task9__result').innerText = task9
+
+
+    // Задача 10. Дано рядок тексту. Підрахувати кількість двоцифрових чисел у рядку.
+    const someStr5 = 'Тут число 234, Тут число 10, Тут число 4, Тут число 2565, Тут 20 число, Тут число 30, 40 Тут число, Тут число50 Тут число5050'
+
+    const task10 = someStr5.match(/\b\d{2}\b/g).length
+    document.querySelector('.task10__result').innerText = task10
+
+
+    // Задача 11. Визначити чи може бути рядок тексту номером банківської картки (приклад: «4142-3433-2323-3434»). Знайти усі такі номери.
+    const someStr6 = 'Клієнт 1: 1111-2222-3333-4444, клієнт 2 - телефон: 38099 99 99 99, клієнт 3: 5555-6666-7777-8888, ще  клієнт1212-1313-1414-1515 клієнт2233-4455-6677-8899-0011'
+
+    const task11 = someStr6.match(/\b\d{4}-\d{4}-\d{4}-\d{4}\b/g)
+    document.querySelector('.task11__result').innerText = task11.join('|||')
+
+
+    // Задача 12. Визначити чи може бути рядок тексту номером банківської картки (приклад: «4142-3433-2323-3434»). Знайти усі такі номери.
+    const url = 'https://some.site.Gov'
+
+    let message = url.toLowerCase().endsWith('.gov') ? 'Урядовий сайт' : 'Не урядовий сайт'
+
+    document.querySelector('.task12__result').innerText = `${url} - ${message}`
+
+
+    // Задача 13. Вибрати усі роки після 2021 року з отриманого повідомлення
+    const someStr7 = 'Це повідомелення було відправлено в 2021році та прочитано в 2022. Відповідь на це повідомлення було дано в 2023 році. Відповідь прочитали у далекому 2061 році. А це рандомний рік - 22611.'
+
+    const task13 = someStr7.match(/\b202[2-9]\b|\b20[3-9]\d\b|\b2[1-9]\d\d\b/g)
+    document.querySelector('.task13__result').innerText = `Стрінга: ${someStr7}\n\n Результат: ${task13.join('|||')}`
+
+
+    // Задача 14. Дано номер телефону. Перевірити, чи є цей телефон телефоном з України (починаєтсья на «+38»)
+    const phone = '+380961112233'
+
+    let messagePhone = phone.startsWith('+38') ? 'Телефон з України' : 'Не з України'
+
+    document.querySelector('.task14__result').innerText = `${phone} - ${messagePhone}`
+
+
+    // Задача 15. Користувач вводить прізвище та ім’я в одному рядку через пробіл.  Замінити пробіл на дефіс.
+    const someStr8 = 'Іванов Іван Іванович, Петренко Олена Миколаївна, Ковальчук Максим Олександрович, Григоренко Анна Віталіївна, Сидоренко Павло Володимирович'
+
+    const task15 = someStr8.replaceAll(' ', '-').replaceAll(',-', ', ')
+    document.querySelector('.task15__result').innerText = `Стрінга: ${someStr8}\n\n Результат: ${task15}`
+
+
+    // Задача 16. Користувач вводить дату у форматі «день.місяць.рік». Отримати рядкове представлення дати у форматі «день/місяць/рік»
+    const input = document.getElementById('task16')
+
+    input.addEventListener('input', () => {
+      const repreplaceFormat = /\b(\d{4})-(\d{2})-(\d{2})\b/
+      const replace = (input.value.replace(repreplaceFormat, '$3/$2/$1'))
+      document.querySelector('.task16__result').innerText = replace
+    })
+
+
+    // Задача 17. Користувач вводить день (номер дня (0-6) або «sun,mon,tue,wed,thu,fri,sat»). Визначити, чи  є це день вихідним
+    const inputTask17 = document.getElementById('task17')
+
+    inputTask17.addEventListener('input', () => {
+      const dateValue = inputTask17.value
+      const checkDay = dateValue == dateValue.match(/[5-6]|sat|sun/) ? 'Вихідний день' : 'Робочий день'
+      document.querySelector('.task17__result').innerText = checkDay
+    })
+
+  </script>
+</body>
+
+</html>
