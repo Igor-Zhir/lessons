@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ДЗ 24</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/task.css">
+</head>
+
+<body>
+  <style>
+    .wrapper {
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 25px;
+      margin-bottom: 15px;
+    }
+
+    .title {
+      background-color: rgb(189, 184, 184);
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .input {
+      padding: 5px;
+      border-radius: 5px;
+      border: 1px solid #333;
+    }
+
+    .task11__input {
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+  <section class="section">
+
+    <div class="task5 wrapper">
+      <h2 class="task5__title title">
+        Задача 5. Дано список з віком учнів. Підрахувати скільки разів кожне значення зустрічається у списку і
+        максимальне.
+      </h2>
+      <div class="task5__result result"></div>
+    </div>
+
+    <div class="task6 wrapper">
+      <h2 class="task6__title title">
+        Задача 6. Дано масив книг (назва, рік видання, автор). Підрахувати кількість книг для кожного автора.
+      </h2>
+      <div class="task6__result result"></div>
+    </div>
+
+    <div class="task7 wrapper">
+      <h2 class="task7__title title">
+        Задача 7. Дано інформацію про відвідувачів деякого сайту (для кожного відвідувача зберігається логін).
+        Підрахувати для кожного клієнта кількість відвідувань.
+      </h2>
+      <div class="task7__result result"></div>
+    </div>
+
+    <div class="task8 wrapper">
+      <h2 class="task8__title title">
+        Задача 8.Дано масив студентів (піб, курс, факультет). Підрахувати кількість різних факультетів, та кількість
+        студентів кожного з курсів.
+      </h2>
+      <div class="task8__result result"></div>
+    </div>
+
+    <div class="task9 wrapper">
+      <h2 class="task9__title title">
+        Задача 9. Дано масив показів температур. Підрахувати кількість входжень кожного із показів. Заокруглити вверх
+        значення та підрахувати кількість різних показів.
+      </h2>
+      <div class="task9__result result"></div>
+    </div>
+
+    <div class="task10 wrapper">
+      <h2 class="task10__title title">
+        Задача 10. Дано два списки прізвищ студентів, що відвідують гуртки з математики і історії.Підрахувати скільки
+        студентів з гуртка з історії також відвідують гурток з математики.Також підрахувати скільки всього студентів
+        відвідують хоча б один гурток.
+      </h2>
+      <div class="task10__result result"></div>
+    </div>
+
+    <div class="task11 wrapper">
+      <h2 class="task11__title title">
+        Задача 11. Користувач може змінювати колір фону, що вибирає користувачз використанням.
+        Зберігати цей колір і відновлювати при наступному відкритті. Також зберігати і відображати кількість змін
+        протягом одного сеансу.
+
+      </h2>
+      <input class="task11__input" type="color" value="">
+      <p>Кількість змін:<span class="task11__result"></span></p>
+    </div>
+
+  </section>
+  <script>
+    // Задача 5. Дано список з віком учнів. Підрахувати скільки разів кожне значення зустрічається у списку і максимальне.
+    const task5Container = document.querySelector('.task5__result')
+    const ages = [12, 16, 15, 14, 16, 15, 13, 12, 16]
+
+    function yearsCount(container, arr) {
+
+      const mapAges = new Map()
+
+      let maxAge = 0
+
+      for (const age of arr) {
+
+        mapAges.set(age, (mapAges.get(age) ?? 0) + 1)
+
+        age > maxAge ? maxAge = age : maxAge
+      }
+
+      mapAges.forEach((value, key) => {
+        const p = document.createElement('p')
+        p.innerText = `Вік: ${key}. Кількість: ${value}`
+        container.append(p)
+      });
+
+      const p1 = document.createElement('p')
+      p1.innerText = `Максимальний вік: ${maxAge}`
+      container.append(p1)
+    }
+    yearsCount(task5Container, ages)
+
+
+    // Задача 6.  Дано масив книг (назва, рік видання, автор). Підрахувати кількість книг для кожного автора.
+    const authorsList = [
+      { title: 'Best book 1', yearPublication: 2011, author: 'Emily Johnson' },
+      { title: 'Best book 2', yearPublication: 1998, author: 'Benjamin Davis' },
+      { title: 'Best book 3', yearPublication: 2015, author: 'Olivia Anderson' },
+      { title: 'Best book 4', yearPublication: 2016, author: 'Emily Johnson' },
+      { title: 'Best book 5', yearPublication: 2020, author: 'Benjamin Davis' },
+      { title: 'Best book 6', yearPublication: 2018, author: 'Emily Johnson' },
+      { title: 'Best book 7', yearPublication: 2019, author: 'Emily Johnson' },
+      { title: 'Best book 8', yearPublication: 2023, author: 'Olivia Anderson' },
+    ]
+
+    const task6Container = document.querySelector('.task6__result')
+
+    function authorsCount(container, authorsList) {
+
+      const mapAuthor = new Map()
+
+      for (const book of authorsList) {
+        mapAuthor.set(book.author, (mapAuthor.get(book.author) ?? 0) + 1)
+      }
+
+      mapAuthor.forEach((value, key) => {
+        const p = document.createElement('p')
+        p.innerText = `Автор: ${key}. Кількість книг: ${value}`
+        container.append(p)
+      });
+    }
+    authorsCount(task6Container, authorsList)
+
+
+    // Задача 7. Дано інформацію про відвідувачів деякого сайту (для кожного відвідувача зберігається логін). Підрахувати для кожного клієнта кількість відвідувань.
+    const usersList = [
+      { userName: 'user1' },
+      { userName: 'user2' },
+      { userName: 'user2' },
+      { userName: 'user3' },
+      { userName: 'user3' },
+      { userName: 'user1' },
+      { userName: 'user2' },
+      { userName: 'user1' },
+    ]
+    const task7Container = document.querySelector('.task7__result')
+
+    function usersCount(container, usersList) {
+
+      const mapUser = new Map()
+
+      for (const user of usersList) {
+        mapUser.set(user.userName, (mapUser.get(user.userName) ?? 0) + 1)
+      }
+
+      mapUser.forEach((value, key) => {
+        const p = document.createElement('p')
+        p.innerText = `User: ${key}. Кількість відвідувань: ${value}`
+        container.append(p)
+      });
+    }
+    usersCount(task7Container, usersList)
+
+
+    // Задача 8.Дано масив студентів (піб, курс, факультет). Підрахувати кількість різних факультетів, та кількість студентів кожного з курсів.
+
+    const task8Container = document.querySelector('.task8__result')
+
+    const studentsList = [
+      { fullName: 'Emma Jensen', levelStudy: 1, faculty: 'Arts' },
+      { fullName: 'Liam Anderson', levelStudy: 3, faculty: 'Science' },
+      { fullName: 'Olivia Smith', levelStudy: 3, faculty: 'Arts' },
+      { fullName: 'Noah Williams', levelStudy: 1, faculty: 'Science' },
+      { fullName: 'Ava Davis', levelStudy: 2, faculty: 'Engineering' },
+      { fullName: 'Ethan Brown', levelStudy: 1, faculty: 'Engineering' },
+      { fullName: 'Sophia Miller', levelStudy: 1, faculty: 'Science' },
+      { fullName: 'Mason Wilson', levelStudy: 2, faculty: 'Medicine' },
+      { fullName: 'Isabella Jones', levelStudy: 2, faculty: 'Science' },
+      { fullName: 'William Taylor', levelStudy: 1, faculty: 'Medicine' },
+    ]
+
+    function students(container, studentsList) {
+
+      const facultySum = new Set(studentsList.map((facultyItem) => facultyItem.faculty)).size
+      const pFacultySum = document.createElement('p')
+      pFacultySum.innerText = `Кількість факультетів: ${facultySum}.`
+      container.append(pFacultySum)
+
+      const levelStudyMap = new Map()
+
+      for (const student of studentsList) {
+        levelStudyMap.set(student.levelStudy, (levelStudyMap.get(student.levelStudy) ?? 0) + 1)
+      }
+
+      levelStudyMap.forEach((value, key) => {
+        const p = document.createElement('p')
+        p.innerText = `Курс: ${key}. Кількість студентів: ${value}`
+        container.append(p)
+      });
+    }
+    students(task8Container, studentsList)
+
+
+    // Задача 9. Дано масив показів температур. Підрахувати кількість входжень кожного із показів. Заокруглити вверх значення та підрахувати кількість різних показів.
+
+    const task9Container = document.querySelector('.task9__result')
+
+    let temperatures = [12.4, 24.9, 10.6, 12.4, 24.9, 12.4, 10.6, 11.9]
+
+    function temp(container, tempList) {
+      const tempMap = new Map()
+
+      for (const temp of tempList) {
+        tempMap.set(temp, (tempMap.get(temp) ?? 0) + 1)
+      }
+
+      tempMap.forEach((value, key) => {
+        const p = document.createElement('p')
+        p.innerText = `Показник: ${key}. Кількість: ${value}`
+        container.append(p)
+      });
+
+      const tempSum = new Set(tempList.map((tempItem) => Math.ceil(tempItem))).size
+      const pTempSum = document.createElement('p')
+      pTempSum.innerText = `Кількість різних показників: ${tempSum}.`
+      container.append(pTempSum)
+    }
+    temp(task9Container, temperatures)
+
+
+    // Задача 10 Дано два списки прізвищ студентів, що відвідують гуртки з математики і історії. Підрахувати скільки студентів з гуртка з історії також відвідують гурток з математики. Також підрахувати скільки всього студентів відвідують хоча б один гурток.
+    const task10Container = document.querySelector('.task10__result')
+
+    const studListMath = [
+      'Emma Jensen',
+      'Olivia Smith',
+      'Noah Williams',
+      'Ava Davis',
+      'Ethan Brown',
+      'Sophia Miller',
+      'Mason Wilson',
+      'William Taylor',
+    ]
+    const studListHistory = [
+      'Olivia Smith',
+      'Noah Williams',
+      'Ava Davis',
+      'Mason Wilson',
+      'William Taylor',
+    ]
+
+    function studentsGroup(studList1, studList2, container) {
+      const generalSdudentList = [...studList1, ...studList2]
+
+      const studentsMap = new Map()
+
+      for (const student of generalSdudentList) {
+        studentsMap.set(student, (studentsMap.get(student) ?? 0) + 1)
+      }
+
+      const p = document.createElement('p')
+      container.append(p)
+
+      let count = 0
+      studentsMap.forEach((value, key) => {
+        if (value === 2) {
+          p.innerText = `Відвідують гурток з математики та історії: ${++count}`
+        }
+      });
+
+      const visitedGroup = new Set(generalSdudentList).size
+      const pVisitedGroup = document.createElement('p')
+      pVisitedGroup.innerText = `Відвідують хоча б один гурток: ${visitedGroup}.`
+      container.append(pVisitedGroup)
+    }
+    studentsGroup(studListMath, studListHistory, task10Container)
+
+
+    //Задача 11. Користувач може змінювати колір фону, що вибирає користувачз використанням
+    // <inputtype="color">.
+    // Зберігати цей колір і відновлювати при наступному відкритті. Також зберігати і відображати кількість змін протягом одного сеансу.
+    window.onload = function () {
+      const task11 = document.querySelector('.task11__input');
+
+      let userColor = localStorage.getItem('userColor');
+      if (!userColor) {
+        userColor = task11.value;
+        localStorage.setItem('userColor', userColor);
+      } else {
+        task11.value = userColor;
+      }
+
+      let countChange = sessionStorage.getItem('countChange')
+      if (!countChange) {
+        countChange = 0
+        sessionStorage.setItem('countChange', countChange)
+      }
+
+      let span = document.querySelector('.task11__result')
+      span.innerText = countChange
+
+      task11.addEventListener('change', () => {
+        const userColor = task11.value;
+        localStorage.setItem('userColor', userColor);
+
+        countChange = parseInt(countChange) + 1;
+        sessionStorage.setItem('countChange', countChange);
+        span.innerText = countChange
+      });
+    };
+
+  </script>
+</body>
+
+</html>
